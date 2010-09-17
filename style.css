@@ -1,3 +1,9 @@
 html, body{
     font-family: sans-serif;
 }
+
+footer{
+    color: #ddd;
+    font-size: 60%;
+    padding-top: 3em;
+}
