@@ -9,17 +9,34 @@ html, body{
 }
 
 .track{
-    background: lightgreen;
-    border-bottom: 1px solid #999;
-    padding: 0.5em 0.7em;
+    background: #F6F6F6;
+    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #fff;
+    font-size: 80%;
+    padding: 0.3em 0.5em;
 }
 
-.track .add{
+.track a{
+    color: #006;
+    text-decoration: none;
+}
+
+.track .icon{
     float: right;
+    margin-left: 0.5em;
 }
 
 .icon.add{
     background: url('mini-icons/plus.png') no-repeat center;
+    display: inline-block;
+    height: 19px;
+    text-indent: -1000px;
+    vertical-align: -0.3em;
+    width: 19px;
+}
+
+.icon.more{
+    background: url('mini-icons/magnifying-glass.png') no-repeat center;
     display: inline-block;
     height: 19px;
     text-indent: -1000px;

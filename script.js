@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	defaultQuery = "asdf";
+	defaultQuery = "spring offensive";
 	searchSpotify(defaultQuery);
 	$("form#spotify_metadata_search input#query").text(defaultQuery);
 	
@@ -48,10 +48,9 @@ function renderTracks(tracks){
 	$.each(tracks, function(index){
 		trackHtml  = "";
 		trackHtml += "<li class=\"track\">";
-		trackHtml += "<a href=\"" + this.href + "\">";
 		trackHtml += this.artists[0].name + " - " + this.name;
-		trackHtml += "</a>";
 		trackHtml += " <a href=\"#\" class=\"icon add\" onclick=\"addTrack('" + this.href + "')\">Add</a>";
+		trackHtml += " <a href=\"#\" class=\"icon more\" onclick=\"moreAboutTrack('" + this.href + "')\">More</a>";
 		trackHtml += "</li>";
 		$("#spotify_metadata_result .tracks").append(trackHtml);
 	});
@@ -61,4 +60,8 @@ function renderTracks(tracks){
 
 function addTrack(spotifyURI){
 	console.log("Adding: " + spotifyURI);
+}
+
+function moreAboutTrack(spotifyURI){
+	console.log("Requesting more info about: " + spotifyURI);
 }
