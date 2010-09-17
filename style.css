@@ -2,6 +2,50 @@ html, body{
     font-family: sans-serif;
 }
 
+.tracks{
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+.track{
+    background: lightgreen;
+    border-bottom: 1px solid #999;
+    padding: 0.5em 0.7em;
+}
+
+.track .add{
+    float: right;
+}
+
+.icon.add{
+    background: url('mini-icons/plus.png') no-repeat center;
+    display: inline-block;
+    height: 19px;
+    text-indent: -1000px;
+    vertical-align: -0.3em;
+    width: 19px;
+}
+
+.icon.vote{
+    background: url('mini-icons/heart.png') no-repeat center;
+    display: inline-block;
+    height: 19px;
+    text-indent: -1000px;
+    vertical-align: -0.3em;
+    width: 21px;
+}
+
+aside{
+}
+
+#activity{
+    margin: 0;
+    line-height: 1.5em;
+    list-style-type: none;
+    padding: 0;
+}
+
 footer{
     color: #ddd;
     font-size: 60%;
