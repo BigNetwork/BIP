@@ -2,19 +2,46 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>BIP</title>
-		
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
 	</head>
 	<body id="index">
 		<h1>Bignetwork Internet Player</h1>
 		
 		<h2>Test av Spotifys Metadata API:</h2>
 		<div id="spotify_metadata_test">
-			
+			<form id="spotify_metadata_search" action="index.html" method="post" accept-charset="utf-8">
+				<p>
+					<label for="query">Artist/låt/album:</label>
+					<input type="text" name="query" value="" id="query" />
+					<input type="submit" value="Sök &rarr;" />
+				</p>
+			</form>
+			<div id="spotify_metadata_result">
+				<div class="status"></div>
+				<ul class="tracks"></ul>
+			</div>
 		</div>
 		<script src="jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
-				$("#spotify_metadata_test").text("jQuery alive.");
+				
+				$("form#spotify_metadata_search").submit(function(){
+					query = $("input#query").val();
+					
+					$("#spotify_metadata_result .status").text("Du sökte efter: " + query);
+					
+					$.getJSON("http://ws.spotify.com/search/1/track.json?q=" + query, function(data){
+
+						tracks = data.tracks || [];	// Make sure we always have a list to iterate over.
+						
+						$.each(tracks, function(index){
+							$("#spotify_metadata_result .tracks").append("<li>" + this.artists[0].name + " - " + this.name + "</li>");
+						});
+					});
+					
+					return false;	// Don't submit the form.
+					$("#spotify_metadata_result").append("Sökning klar.");
+				});
 			});
 		</script>
 	</body>
