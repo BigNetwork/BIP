@@ -21,58 +21,67 @@
 		
 		<section id="page">
 	
-	<!--	
-		<h3>&uarr; Rösta upp låtar du vill höra</h3>
+			<nav>
+				<ul>
+					<li><a class="current" href="#">Lägg till</a></li>
+					<li><a href="#">Rösta</a></li>
+				</ul>
+			</nav>
+	
+		<!--	
+			<h3>&uarr; Rösta upp låtar du vill höra</h3>
 		
-		<h3>+ Lägg till din favoritlåt</h3>
-	-->
+			<h3>+ Lägg till din favoritlåt</h3>
+		-->
 		
-		<section>
+			<section>
 		
-		<h2>Sök på Spotify:</h2>
-		<div id="spotify_metadata_test">
-			<form id="spotify_metadata_search" action="index.html" method="post" accept-charset="utf-8">
-				<input type="search" name="query" value="" id="query" placeholder="Artist/låt/album" />
-				<input type="submit" name="submit" value="Sök &rarr;" />
-			</form>
-			<div id="spotify_metadata_result">
-				<div class="status"></div>
-				<table class="tracks">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Artist</th>
-							<th>Låt</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="track">
-							<td>&nbsp;</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
+			<h2>Sök på Spotify:</h2>
+			<div id="spotify_metadata_test">
+				<form id="spotify_metadata_search" action="index.html" method="post" accept-charset="utf-8">
+					<input type="search" name="query" value="" id="query" placeholder="Artist/låt/album" />
+					<input type="submit" name="submit" value="Sök &rarr;" />
+				</form>
+				<div id="spotify_metadata_result">
+					<div class="status"></div>
+					<table class="tracks">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Artist</th>
+								<th>Låt</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="track">
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
+		
+			</section>
 		
 		</section>
-		
-		<aside>
-			<h3>Aktivitet:</h3>
-			<ul id="activity">
-				<li>
-					<span class="icon vote"></span>
-					<a href="#">MPV</a> röstade på <a href="#">Woman in Panic - Asdf</a>
-				</li>
-				<li>
-					<span class="icon add"></span> asdf
-				</li>
-			</ul>
 			
-		</aside>
+			<aside>
+				<h3>Aktivitet:</h3>
+				<ul id="activity">
+					<li>
+						<span class="icon vote"></span>
+						<a href="#">MPV</a> röstade på <a href="#" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
+					</li>
+					<li>
+						<span class="icon add"></span>
+						<a href="#">MPV</a> la till låten <a href="#" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
+					</li>
+				</ul>
+			
+			</aside>
 		
-		</section>
 		
 		<footer>
 			BIP, Bignetwork Internet Player.

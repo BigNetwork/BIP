@@ -10,6 +10,14 @@ body{
     background: url('tile.gif');
 }
 
+a{
+    position: relative;
+}
+
+a:active{
+    top: 1px;
+}
+
 header{
     clear: both;
     margin: 0 auto;
@@ -23,13 +31,14 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'PT Sans';
 }
 
-nav{
+body>nav{
     clear: both;
+    display: none;
     margin: 0 auto;
     max-width: 800px;
 }
 
-nav li{
+body>nav li{
     display: inline;
     list-style-type: none;
 }
@@ -46,6 +55,39 @@ section#page{
     border-radius: 0.5em;
     margin: 0 auto;
     max-width: 800px;
+}
+
+section#page nav{
+    border-bottom: 1px solid #eee;
+    margin: 0 1.5em;
+}
+
+section#page nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+section#page nav li{
+    display: inline;
+    list-style-type: none;
+}
+
+section#page nav a{
+    border-radius: 0.4em;
+    color: #333;
+    display: inline-block;
+    font-weight: bold;
+    margin: 1.2em 0.5em 1em 0;
+    padding: 0.3em 0.7em;
+    text-decoration: none;
+}
+
+section#page nav a:hover{
+    background: #eee;
+}
+
+section#page nav a.current{
+    background: #ccc;
 }
 
 section#page h2{
@@ -87,8 +129,6 @@ section#page h2{
 }
 
 .track{
-    background: #F6F6F6;
-    font-size: 100%;
 }
 
 .track a{
@@ -101,9 +141,13 @@ section#page h2{
 }
 
 .track td{
+    background: #F6F6F6;
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
+    color: #666;
+    font-size: 100%;
     padding: 0.4em 0.5em;
+    text-shadow: 0px 1px 0px #fff;
 }
 
 .track .artist{
@@ -122,11 +166,11 @@ section#page h2{
 
 .track .action a{
     display: block;
-    opacity: 0.1;
+    opacity: 0.5;
 }
 
 .track .action a:hover{
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 .track .icon{
@@ -138,14 +182,19 @@ section#page h2{
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #fff;
+    border-radius: 4px;
     display: inline-block;
     height: 20px;
+    padding: 0 1px;
     text-indent: -2000px;
     vertical-align: -0.3em;
     width: 20px;
 }
 
 .icon.add{
+    background-color: #bf7;
     background-image: url('mini-icons/plus.png');
 }
 
@@ -154,18 +203,40 @@ section#page h2{
 }
 
 .icon.vote{
+    background-color: #f99;
     background-image: url('mini-icons/heart.png');
 }
 
 aside{
-    float: right;
+/*    float: right;*/
+    margin: 0 auto;
+    max-width: 760px;
 }
 
 #activity{
+    color: #999;
+    font-size: 80%;
     margin: 0;
     line-height: 1.5em;
     list-style-type: none;
     padding: 0;
+    text-shadow: 0 1px 0 #fff;
+}
+
+#activity li{
+    line-height: 2.0em;
+}
+
+#activity .icon{
+    height: 13px;
+    margin-right: 0.2em;
+    opacity: 0.5;
+    width: 13px;
+}
+
+#activity a{
+    color: #9ac;
+    text-decoration: none;
 }
 
 footer{
