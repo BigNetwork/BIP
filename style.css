@@ -279,6 +279,11 @@ aside>section{
     width: 50%;
 }
 
+aside a{
+    color: #9ac;
+    text-decoration: none;
+}
+
 #activities{
     margin: 0;
     line-height: 1.5em;
@@ -296,11 +301,6 @@ aside>section{
     margin-right: 0.2em;
     opacity: 0.5;
     width: 13px;
-}
-
-.activity a{
-    color: #9ac;
-    text-decoration: none;
 }
 
 .activity .timestamp{
