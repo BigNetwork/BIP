@@ -215,8 +215,10 @@ section#page h2{
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
+    -moz-background-size: 60%;
     border-bottom: 1px solid #aaa;
     border-top: 1px solid #fff;
+    -moz-border-radius: 4px;
     border-radius: 4px;
     display: inline-block;
     height: 20px;
