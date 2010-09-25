@@ -1,24 +1,132 @@
 html, body{
     font-family: sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body{
+    background: url('tile.gif');
+}
+
+header{
+    clear: both;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+header h1{
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'PT Sans';
+}
+
+nav{
+    clear: both;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+nav li{
+    display: inline;
+    list-style-type: none;
+}
+
+/*
+body>section{
+    float: left;
+}
+*/
+
+section#page{
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5em;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+section#page h2{
+    margin: 0;
+    padding: 0.7em 1em;
+    padding-bottom: 0;
+}
+
+#spotify_metadata_search{
+    padding: 0.5em 1.5em;
+}
+
+#spotify_metadata_search input[type=search]{
+    font-size: 13em;
+    max-width: 100%;
+}
+
+#spotify_metadata_search input[type=submit]{
+    display: none;
+}
+
+#spotify_metadata_result .status{
+    padding: 1em;
 }
 
 .tracks{
+    border-spacing: 0;
     margin: 0;
-    list-style-type: none;
     padding: 0;
+    width: 100%;
+}
+
+.tracks thead th{
+    color: #666;
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 0.3em 0.5em;
+    text-align: left;
 }
 
 .track{
     background: #F6F6F6;
-    border-bottom: 1px solid #EAEAEA;
-    border-top: 1px solid #fff;
-    font-size: 80%;
-    padding: 0.3em 0.5em;
+    font-size: 100%;
 }
 
 .track a{
-    color: #006;
+    color: #000;
     text-decoration: none;
+}
+
+.track a:hover{
+    text-decoration: underline;
+}
+
+.track td{
+    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #fff;
+    padding: 0.4em 0.5em;
+}
+
+.track .artist{
+    border-right: 1px solid #fff;
+    min-width: 10em;
+}
+
+.track .name{
+    min-width: 10em;
+}
+
+.track .action{
+    padding: 0;
+    width: 25px;
+}
+
+.track .action a{
+    display: block;
+    opacity: 0.1;
+}
+
+.track .action a:hover{
+    opacity: 0.5;
 }
 
 .track .icon{
@@ -26,34 +134,31 @@ html, body{
     margin-left: 0.5em;
 }
 
-.icon.add{
-    background: url('mini-icons/plus.png') no-repeat center;
+.icon{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
     display: inline-block;
-    height: 19px;
-    text-indent: -1000px;
+    height: 20px;
+    text-indent: -2000px;
     vertical-align: -0.3em;
-    width: 19px;
+    width: 20px;
+}
+
+.icon.add{
+    background-image: url('mini-icons/plus.png');
 }
 
 .icon.more{
-    background: url('mini-icons/magnifying-glass.png') no-repeat center;
-    display: inline-block;
-    height: 19px;
-    text-indent: -1000px;
-    vertical-align: -0.3em;
-    width: 19px;
+    background-image: url('mini-icons/magnifying-glass.png');
 }
 
 .icon.vote{
-    background: url('mini-icons/heart.png') no-repeat center;
-    display: inline-block;
-    height: 19px;
-    text-indent: -1000px;
-    vertical-align: -0.3em;
-    width: 21px;
+    background-image: url('mini-icons/heart.png');
 }
 
 aside{
+    float: right;
 }
 
 #activity{
@@ -64,7 +169,10 @@ aside{
 }
 
 footer{
+    clear: both;
     color: #ddd;
     font-size: 60%;
+    margin: 0 auto;
+    max-width: 800px;
     padding-top: 3em;
 }

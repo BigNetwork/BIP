@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>BIP</title>
 		<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
 	</head>
 	<body id="index">
 		<header>
@@ -18,19 +19,44 @@
 			</ul>
 		</nav>
 		
-		<h2>Test av Spotifys Metadata API:</h2>
+		<section id="page">
+	
+	<!--	
+		<h3>&uarr; Rösta upp låtar du vill höra</h3>
+		
+		<h3>+ Lägg till din favoritlåt</h3>
+	-->
+		
+		<section>
+		
+		<h2>Sök på Spotify:</h2>
 		<div id="spotify_metadata_test">
 			<form id="spotify_metadata_search" action="index.html" method="post" accept-charset="utf-8">
-				<p>
-					<input type="search" name="query" value="" id="query" placeholder="Artist/låt/album" />
-					<input type="submit" value="Sök &rarr;" />
-				</p>
+				<input type="search" name="query" value="" id="query" placeholder="Artist/låt/album" />
+				<input type="submit" name="submit" value="Sök &rarr;" />
 			</form>
 			<div id="spotify_metadata_result">
 				<div class="status"></div>
-				<ul class="tracks"></ul>
+				<table class="tracks">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Artist</th>
+							<th>Låt</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="track">
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
+		
+		</section>
 		
 		<aside>
 			<h3>Aktivitet:</h3>
@@ -46,11 +72,14 @@
 			
 		</aside>
 		
+		</section>
+		
 		<footer>
 			BIP, Bignetwork Internet Player.
 		</footer>
 		
 		<script src="jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="script.js" type="text/javascript" charset="utf-8"></script>
 
 	</body>
