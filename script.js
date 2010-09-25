@@ -80,7 +80,7 @@ function renderTracks(tracks){
 	$.each(tracks, function(index){
 		trackHtml  = '';
 		trackHtml += '<tr class="track">';
-		trackHtml += '<td class="action"><a href="#" class="icon add" title="Lägg till" onclick="addTrack(\'' + this.href + '\')">Lägg till</a></td>';
+		trackHtml += '<td class="action"><a href="#" class="icon add" title="Lägg till" onclick="addTrack(\'' + this.href + '\')">+</a></td>';
 		trackHtml += '<td class="artist"><a href="#" onclick="searchSpotify(\'' + this.artists[0].name + '\')">' + this.artists[0].name + '</a></td>';
 		trackHtml += '<td class="name"><a href="#" onclick="searchSpotify(\'' + this.name + '\')">' + this.name + '</a></td>';
 		trackHtml += '<td class="action"><a href="' + this.href + '" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>';

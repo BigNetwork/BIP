@@ -112,6 +112,7 @@ section#page nav a:hover{
 
 section#page nav a.current{
     background: #ccc;
+    text-shadow: 1px 1px 0 #fff;
 }
 
 section#page h2{
@@ -156,7 +157,12 @@ section#page h2{
 }
 
 .track.current td{
-    background: lightgreen;
+    background: #3c3;
+    color: #fff;
+    text-shadow: 1px 1px 0 green;
+}
+.track.current td a{
+    color: #fff;
 }
 
 .track.current .action.vote .icon{
@@ -179,7 +185,7 @@ section#page h2{
     color: #333;
     font-size: 100%;
     padding: 0.5em 0.5em;
-    text-shadow: 0px 1px 0px #fff;
+    text-shadow: 1px 1px 0px #fff;
 }
 
 .track .artist{
@@ -220,17 +226,27 @@ section#page h2{
     border-top: 1px solid #fff;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    color: #fff !important;
     display: inline-block;
+    font-size: 130%;
+    font-weight: bold;
     height: 20px;
+    line-height: 75%;
+    overflow: hidden;
     padding: 0 1px;
-    text-indent: -2000px;
+/*    text-indent: -2000px;*/
+    text-align: center;
+    text-shadow: none;
     vertical-align: -0.3em;
     width: 20px;
 }
+.icon:hover{
+    text-decoration: none !important;
+}
 
 .icon.add{
-    background-color: #bf7;
-    background-image: url('mini-icons/plus.png');
+    background-color: #3c3;
+    /*background-image: url('mini-icons/plus.png');*/
 }
 
 .icon.more{
@@ -238,8 +254,10 @@ section#page h2{
 }
 
 .icon.vote{
-    background-color: #f99;
-    background-image: url('mini-icons/heart.png');
+    background-color: #f39;
+/*    background-image: url('mini-icons/heart.png');*/
+    font-size: 120%;
+    line-height: 100%;
 }
 
 .icon.open{
@@ -254,6 +272,11 @@ aside{
 /*    float: right;*/
     margin: 0 auto;
     max-width: 760px;
+}
+
+aside>section{
+    float: left;
+    width: 50%;
 }
 
 #activities{
