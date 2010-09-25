@@ -36,7 +36,7 @@ header a{
 }
 
 header .name{
-    color: #3c0;
+    color: #3c3;
     font-size: 120%;
 }
 
@@ -80,13 +80,13 @@ section#page{
 }
 
 section#page nav{
-    border-bottom: 1px solid #eee;
     display: block;
 }
 
 section#page nav ul{
-    margin: 0;
-    padding: 1em 1.5em;
+    border-bottom: 1px solid #eee;
+    margin: 0 1.5em;
+    padding: 1.2em 0em;
 }
 
 section#page nav li{
@@ -99,9 +99,10 @@ section#page nav a{
     border-radius: 0.4em;
     color: #333;
     display: inline-block;
-    font-weight: bold;
+    font-weight: normal;
 /*    margin: 1.3em 0.5em 1.3em 0;*/
-    margin-right: 0.5em;
+    margin-right: 1.0em;
+    outline: 0 none;
     padding: 0.3em 0.7em;
     text-decoration: none;
 }
@@ -111,8 +112,10 @@ section#page nav a:hover{
 }
 
 section#page nav a.current{
-    background: #ccc;
-    text-shadow: 1px 1px 0 #fff;
+    background: #3c3;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px -1px 0 green;
 }
 
 section#page h2{
@@ -234,7 +237,7 @@ section#page h2{
     line-height: 75%;
     overflow: hidden;
     padding: 0 1px;
-/*    text-indent: -2000px;*/
+    text-indent: -2000px;
     text-align: center;
     text-shadow: none;
     vertical-align: -0.3em;
@@ -247,6 +250,7 @@ section#page h2{
 .icon.add{
     background-color: #3c3;
     /*background-image: url('mini-icons/plus.png');*/
+    text-indent: 0px;
 }
 
 .icon.more{
@@ -256,6 +260,7 @@ section#page h2{
 .icon.vote{
     background-color: #f39;
 /*    background-image: url('mini-icons/heart.png');*/
+    text-indent: 0px;
     font-size: 120%;
     line-height: 100%;
 }

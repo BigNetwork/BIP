@@ -11,7 +11,7 @@
 			<h1>
 				<a href="">
 					<span class="name">♪ BIP</span>
-					<span class="explanation"> (Bignetwork Internet Player)</span>
+					<span class="explanation">Bignetwork Internet Player</span>
 				</a>
 			</h1>
 			<!-- ♫  ♪ -->
@@ -29,8 +29,8 @@
 	
 			<nav>
 				<ul>
-					<li><a class="voting current" href="#voting" onclick="showVoting()">Rösta</a></li>
-					<li><a class="adding" href="#adding" onclick="showAdding()">Lägg till</a></li>
+					<li><a class="voting current" href="#vote" onclick="showVoting()">Rösta</a></li>
+					<li><a class="adding" href="#add" onclick="showAdding()">Lägg till</a></li>
 				</ul>
 			</nav>
 	
@@ -61,25 +61,25 @@
 							<td class="action vote">&nbsp; ▶</td>
 							<td><a href="#" onclick="searchSpotify('Woman in Panic')">Woman in Panic</a></td>
 							<td><a href="#" onclick="searchSpotify('Asdf')">Asdf</a></td>
-							<td class="action open"><a href="spotify:track:4QEkWrPhsylzlLtT5dr4Kt" class="icon open" title="Visa i Spotify"></a></td>
+							<td class="action open"><a href="spotify:track:4QEkWrPhsylzlLtT5dr4Kt" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
 							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:09ISyLOPeuno7kKlzdbZuq')">❤</a></td>
 							<td><a href="#" onclick="searchSpotify('ItaloBrothers')">ItaloBrothers</td>
 							<td><a href="#" onclick="searchSpotify('Stamp On The Ground - Radio Edit')">Stamp On The Ground - Radio Edit</td>
-							<td class="action open"><a href="spotify:track:09ISyLOPeuno7kKlzdbZuq" class="icon open" title="Visa i Spotify"></a></td>
+							<td class="action open"><a href="spotify:track:09ISyLOPeuno7kKlzdbZuq" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
 							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:1seF5FpRtNXsmNxlEDDxuN')">❤</a></td>
 							<td><a href="#" onclick="searchSpotify('The Shapeshifters')">The Shapeshifters</td>
 							<td><a href="#" onclick="searchSpotify('Lola\'s Theme')">Lola's Theme</td>
-							<td class="action open"><a href="spotify:track:1seF5FpRtNXsmNxlEDDxuN" class="icon open" title="Visa i Spotify"></a></td>
+							<td class="action open"><a href="spotify:track:1seF5FpRtNXsmNxlEDDxuN" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
 							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:5FyGFevTnI1FMiSMoDCQFd')">❤</a></td>
 							<td><a href="#" onclick="searchSpotify('Serge Gainsbourg')">Serge Gainsbourg</td>
 							<td><a href="#" onclick="searchSpotify('Initials BB')">Initials BB</td>
-							<td class="action open"><a href="spotify:track:5FyGFevTnI1FMiSMoDCQFd" class="icon open" title="Visa i Spotify"></a></td>
+							<td class="action open"><a href="spotify:track:5FyGFevTnI1FMiSMoDCQFd" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -88,7 +88,7 @@
 			
 			<section id="adding">
 		
-				<h2>Sök på Spotify:</h2>
+				<h2>Sök låtar från Spotify:</h2>
 				<div id="spotify_metadata_test">
 					<form id="spotify_metadata_search" action="index.html" method="post" accept-charset="utf-8">
 						<input type="search" name="query" value="" id="query" placeholder="Artist/låt/album" />
