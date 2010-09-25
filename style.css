@@ -1,5 +1,5 @@
-html, body{
-    font-family: sans-serif;
+html{
+    
     height: 100%;
     margin: 0;
     padding: 0;
@@ -8,6 +8,7 @@ html, body{
 
 body{
     background: url('tile.gif');
+    font-family: sans-serif;
 }
 
 a{
@@ -20,6 +21,7 @@ a:active{
 
 header{
     clear: both;
+    display: block;
     margin: 0 auto;
     max-width: 800px;
 }
@@ -70,6 +72,7 @@ body>section{
 section#page{
     background: #fff;
     border: 1px solid #ddd;
+    -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     display: block;
     margin: 0 auto;
@@ -78,12 +81,12 @@ section#page{
 
 section#page nav{
     border-bottom: 1px solid #eee;
-    margin: 0 1.5em;
+    display: block;
 }
 
 section#page nav ul{
     margin: 0;
-    padding: 0;
+    padding: 1em 1.5em;
 }
 
 section#page nav li{
@@ -92,11 +95,13 @@ section#page nav li{
 }
 
 section#page nav a{
+    -moz-border-radius: 0.4em;
     border-radius: 0.4em;
     color: #333;
     display: inline-block;
     font-weight: bold;
-    margin: 1.3em 0.5em 1.3em 0;
+/*    margin: 1.3em 0.5em 1.3em 0;*/
+    margin-right: 0.5em;
     padding: 0.3em 0.7em;
     text-decoration: none;
 }
@@ -120,7 +125,7 @@ section#page h2{
 }
 
 #spotify_metadata_search input[type=search]{
-    font-size: 2em;
+    font-size: 1.5em;
     max-width: 100%;
 }
 
@@ -242,6 +247,7 @@ section#page h2{
 
 aside{
     color: #666;
+    display: block;
     font-size: 80%;
 /*    float: right;*/
     margin: 0 auto;
@@ -279,6 +285,7 @@ aside{
 footer{
     clear: both;
     color: #bbb;
+    display: block;
     font-size: 60%;
     margin: 0 auto;
     max-width: 760px;
