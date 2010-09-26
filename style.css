@@ -214,10 +214,12 @@ section#page h2{
 .track .action a{
     display: block;
     opacity: 0.5;
+    text-align: center;
 }
 
 .track .action a:hover{
     opacity: 0.9;
+    text-decoration: none;
 }
 
 .track .icon{
