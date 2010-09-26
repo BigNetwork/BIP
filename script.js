@@ -120,4 +120,5 @@ function showAdding(){
 	$("section#adding").show();
 	$("section#page nav a").removeClass("current");
 	$("section#page nav a.adding").addClass("current");
+	$("form#spotify_metadata_search input#query").focus();
 }
