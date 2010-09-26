@@ -50,41 +50,47 @@
 				<table class="tracks">
 					<thead>
 						<tr>
+							<th class="artist">Artist</th>
+							<th class="name">Låt</th>
+							<th class="album">Album</th>
 							<th></th>
-							<th>Artist</th>
-							<th>Låt</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="track current">
-							<td class="action vote">&nbsp; ▶</td>
-							<td><a href="#" onclick="searchSpotify('Woman in Panic')">Woman in Panic</a></td>
-							<td><a href="#" onclick="searchSpotify('Asdf')">Asdf</a></td>
+							<td class="artist"><a href="#" onclick="searchSpotify('Woman in Panic')">Woman in Panic</a></td>
+							<td class="name"><a href="#" onclick="searchSpotify('Asdf')">Asdf</a></td>
+							<td class="album"><a href="#" onclick="searchSpotify('Party Killer?!')">Party Killer?!</a></td>
+							<td class="action vote"><span class="icon playing">▶</span></td>
 							<td class="action open"><a href="spotify:track:4QEkWrPhsylzlLtT5dr4Kt" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
-							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:09ISyLOPeuno7kKlzdbZuq')">❤</a></td>
-							<td><a href="#" onclick="searchSpotify('ItaloBrothers')">ItaloBrothers</a></td>
-							<td><a href="#" onclick="searchSpotify('Stamp On The Ground')">Stamp On The Ground</a></td>
+							<td class="artist"><a href="#" onclick="searchSpotify('ItaloBrothers')">ItaloBrothers</a></td>
+							<td class="name"><a href="#" onclick="searchSpotify('Stamp On The Ground')">Stamp On The Ground</a></td>
+							<td class="album"><a href="#" onclick="searchSpotify('Stamp On The Ground')">Stamp On The Ground</a></td>
+							<td class="action vote"><span class="votecount">22</span><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:09ISyLOPeuno7kKlzdbZuq')">❤</a></td>
 							<td class="action open"><a href="spotify:track:09ISyLOPeuno7kKlzdbZuq" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
-							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:1seF5FpRtNXsmNxlEDDxuN')">❤</a></td>
-							<td><a href="#" onclick="searchSpotify('The Shapeshifters')">The Shapeshifters</a></td>
-							<td><a href="#" onclick="searchSpotify('Lola\'s Theme')">Lola's Theme</a></td>
+							<td class="artist"><a href="#" onclick="searchSpotify('The Shapeshifters')">The Shapeshifters</a></td>
+							<td class="name"><a href="#" onclick="searchSpotify('Lola\'s Theme')">Lola's Theme</a></td>
+							<td class="album"></td>
+							<td class="action vote"><span class="votecount">15</span><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:1seF5FpRtNXsmNxlEDDxuN')">❤</a></td>
 							<td class="action open"><a href="spotify:track:1seF5FpRtNXsmNxlEDDxuN" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track">
-							<td class="action vote"><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:5FyGFevTnI1FMiSMoDCQFd')">❤</a></td>
-							<td><a href="#" onclick="searchSpotify('Serge Gainsbourg')">Serge Gainsbourg</a></td>
-							<td><a href="#" onclick="searchSpotify('Initials BB')">Initials BB</a></td>
+							<td class="artist"><a href="#" onclick="searchSpotify('Serge Gainsbourg')">Serge Gainsbourg</a></td>
+							<td class="name"><a href="#" onclick="searchSpotify('Initials BB')">Initials BB</a></td>
+							<td class="album"></td>
+							<td class="action vote"><span class="votecount">13</span><a href="#" class="icon vote" title="Rösta" onclick="voteForTrack('spotify:track:5FyGFevTnI1FMiSMoDCQFd')">❤</a></td>
 							<td class="action open"><a href="spotify:track:5FyGFevTnI1FMiSMoDCQFd" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>
 						</tr>
 						<tr class="track add">
-							<td class="action vote"><a href="#" class="icon add" title="Lägg till" onclick="showAdding()">+</a></td>
-							<td><a href="#add" onclick="showAdding()">Lägg till en låt</a></td>
-							<td></td>
+							<td class="artist"><a href="#add" class="icon small add" title="Lägg till" onclick="showAdding()">+</a><a href="#add" onclick="showAdding()">Lägg till en låt</a></td>
+							<td class="name"></td>
+							<td class="album"></td>
+							<td class="action vote"></td>
 							<td class="action"></td>
 						</tr>
 					</tbody>
@@ -105,16 +111,20 @@
 						<table class="tracks">
 							<thead>
 								<tr>
+									<th class="artist">Artist</th>
+									<th class="name">Låt</th>
+									<th class="album">Album</th>
 									<th></th>
-									<th>Artist</th>
-									<th>Låt</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="track">
-									<td class="action"></td>
 									<td>&nbsp;</td>
 									<td></td>
+									<td></td>
+									<td class="action"></td>
+									<td class="action"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -133,12 +143,12 @@
 					<ul id="activities">
 						<li class="activity">
 							<span class="icon vote">❤</span>
-							<a href="#">MPV</a> röstade på <a href="#" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
+							<a href="#">MPV</a> röstade på <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
 							<span class="timestamp">för en minut sedan</span>
 						</li>
 						<li class="activity">
 							<span class="icon add">+</span>
-							<a href="#">MPV</a> la till låten <a href="#" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
+							<a href="#">MPV</a> la till låten <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a>
 							<span class="timestamp">för fem minuter sedan</span>
 						</li>
 					</ul>

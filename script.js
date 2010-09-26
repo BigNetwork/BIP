@@ -24,13 +24,14 @@ $(document).ready(function(){
 		return false;	// Don't submit the form.
 	});
 	
+	/*
 	$("#spotify_metadata_result .tracks").dataTable({
-		/*"aaSorting": [[],[ 1, "desc" ], [ 0, "asc" ]],
-		"aoColumns": [ 
-					{ "sType": "html" },
-					{ "sType": "text" },
-					{ "sType": "text" }
-		],*/
+		//"aaSorting": [[],[ 1, "desc" ], [ 0, "asc" ]],
+		//"aoColumns": [ 
+		//			{ "sType": "html" },
+		//			{ "sType": "text" },
+		//			{ "sType": "text" }
+		//],
 		"bPaginate": false,
 		"bLengthChange": false,
 		"bFilter": false,
@@ -40,6 +41,7 @@ $(document).ready(function(){
 			"sSearch": "Sök:"
 		}
 	});
+	*/
 	
 });
 
@@ -76,13 +78,16 @@ function renderTracks(tracks){
 	// Remove old search results:
 	clearSearchResults();
 	
+	console.log(tracks);
+	
 	// Add new:
 	$.each(tracks, function(index){
 		trackHtml  = '';
 		trackHtml += '<tr class="track">';
-		trackHtml += '<td class="action"><a href="#" class="icon add" title="Lägg till" onclick="addTrack(\'' + this.href + '\')">+</a></td>';
 		trackHtml += '<td class="artist"><a href="#" onclick="searchSpotify(\'' + this.artists[0].name + '\')">' + this.artists[0].name + '</a></td>';
 		trackHtml += '<td class="name"><a href="#" onclick="searchSpotify(\'' + this.name + '\')">' + this.name + '</a></td>';
+		trackHtml += '<td class="album"><a href="#" onclick="searchSpotify(\'' + this.album.name + '\')">' + this.album.name + '</a></td>';
+		trackHtml += '<td class="action"><a href="#" class="icon add" title="Lägg till" onclick="addTrack(\'' + this.href + '\')">+</a></td>';
 		trackHtml += '<td class="action"><a href="' + this.href + '" class="icon open" title="Visa i Spotify">Visa i Spotify</a></td>';
 		//<td class="action"><a href="spotify:track:09ISyLOPeuno7kKlzdbZuq" class="icon open" title="Visa i Spotify"></a></td>
 		trackHtml += '</tr>';

@@ -28,7 +28,7 @@ header{
 
 header h1{
     padding-left: 0.8em;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 1px 1px 0 #fff;
 }
 
 header a{
@@ -115,7 +115,7 @@ section#page nav a.current{
     background: #3c3;
     color: #fff;
     font-weight: bold;
-    text-shadow: 0px -1px 0 green;
+    text-shadow: -1px -1px 0 green;
 }
 
 section#page h2{
@@ -152,8 +152,12 @@ section#page h2{
     color: #666;
     font-size: 0.8em;
     font-weight: normal;
-    padding: 0.3em 0.5em;
+    padding: 0.3em 0.8em;
     text-align: left;
+}
+
+.tracks thead .artist, .tracks thead .name{
+    border-right: 1px solid #eee;
 }
 
 .track{
@@ -168,14 +172,10 @@ section#page h2{
 .track.current td a{
     color: #fff;
 }
-
+/*
 .track.current .action.vote .icon{
     display: none;
-}
-
-.track.add a{
-    color: #bbb;
-}
+}*/
 
 .track a{
     color: #333;
@@ -191,14 +191,24 @@ section#page h2{
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
     color: #333;
-    font-size: 100%;
-    padding: 0.5em 0.5em;
+    font-size: 90%;
+    padding: 0.5em 0.7em;
     text-shadow: 1px 1px 0px #fff;
 }
 
+.track.add a{
+    color: #aaa;
+}
+
 .track .artist{
-    border-right: 1px solid #fff;
     min-width: 10em;
+}
+
+.track .title{
+}
+
+.track .album{
+    
 }
 
 .track .name{
@@ -206,8 +216,7 @@ section#page h2{
 }
 
 .track .action{
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
     width: 25px;
 }
 
@@ -217,13 +226,29 @@ section#page h2{
     text-align: center;
 }
 
+.track .action.vote{
+    text-align: right;
+    width: 3.2em;
+}
+
+.track .votecount{
+    color: #999;
+    display: inline-block;
+    font-size: 90%;
+    float: left;
+    padding: 0.3em 0em;
+}
+
+.track .action.vote .icon{
+    float: right;
+}
+
 .track .action a:hover{
     opacity: 0.9;
     text-decoration: none;
 }
 
 .track .icon{
-    float: right;
 /*    margin-left: 0.5em;*/
 }
 
@@ -241,15 +266,22 @@ section#page h2{
     font-size: 130%;
     font-weight: bold;
     height: 20px;
-    line-height: 75%;
+    line-height: 0.9em;
+    margin: 0 0.3em 0 0;
     overflow: hidden;
     padding: 0 1px;
     text-indent: -2000px;
     text-align: center;
     text-decoration: none !important;
     text-shadow: none;
-    vertical-align: -0.3em;
+/*    vertical-align: -0.3em;*/
     width: 20px;
+}
+
+.icon.small{
+    height: 0.8em;
+    line-height: 0.55em;
+    width: 0.8em;
 }
 
 .icon.add{
@@ -273,6 +305,14 @@ section#page h2{
 .icon.open{
     background-color: #ccc;
     background-image: url('mini-icons/eye.png');
+}
+
+.icon.playing{
+    background-color: #3c3;
+    border: none;
+    font-size: 120%;
+    line-height: 130%;
+    text-indent: 0;
 }
 
 aside{
