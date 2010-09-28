@@ -3,12 +3,45 @@
 <head>
   <title>Bip</title>
   <%= stylesheet_link_tag :all %>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+	<header>
+		<h1>
+			<a href="/">
+				<span class="name">♪ BIP</span>
+				<span class="explanation">Bignetwork Internet Player</span>
+			</a>
+		</h1>
+		<!-- ♫  ♪ -->
+	</header>
+	
+	<nav>
+		<ul>
+			<li><a href="">Spelningslistor</a></li>
+			<li><a href="">Användare</a></li>
+			<li><a href="">Röster</a></li>
+		</ul>
+	</nav>
+	
+	<section id="page">
 
-<%= yield %>
-
+		<nav>
+			<ul>
+				<li><a class="voting current" href="#vote" onclick="showVoting()">Rösta</a></li>
+				<li><a class="adding" href="#add" onclick="showAdding()">Lägg till</a></li>
+			</ul>
+		</nav>
+		
+		<section id="voting">
+			
+			<h2>Rösta upp låtar du vill höra:</h2>
+			
+			<%= yield %>
+		
+		</section>
+	</section>
 </body>
 </html>

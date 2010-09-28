@@ -3,15 +3,15 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
+    <!--<th></th>-->
     <th></th>
     <th></th>
   </tr>
 
 <% @playlists.each do |playlist| %>
   <tr>
-    <td><%= playlist.name %></td>
-    <td><%= link_to 'Show', playlist %></td>
+    <td><%= link_to playlist.name, playlist_tracks_path(playlist) %></td>
+    <!--<td><%= link_to 'Show', playlist %></td>-->
     <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
     <td><%= link_to 'Destroy', playlist, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
