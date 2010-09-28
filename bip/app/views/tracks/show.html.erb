@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @track.name %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%= @track.artist %>
+</p>
+
+<p>
+  <b>Album:</b>
+  <%= @track.album %>
+</p>
+
+<p>
+  <b>Href:</b>
+  <%= @track.href %>
+</p>
+
+<p>
+  <b>Popularity:</b>
+  <%= @track.popularity %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%= @track.length %>
+</p>
+
+<p>
+  <b>Playlist:</b>
+  <%= @track.playlist_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

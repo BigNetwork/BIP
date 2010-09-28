@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  artist: MyString
+  album: MyString
+  href: MyString
+  popularity: 1.5
+  length: 1.5
+  playlist_id: 1
+
+two:
+  name: MyString
+  artist: MyString
+  album: MyString
+  href: MyString
+  popularity: 1.5
+  length: 1.5
+  playlist_id: 1

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @playlist.name %>
+</p>
+
+<% unless @playlist.tracks.empty? %>
+
+	<table class="tracks">
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @playlist.tracks.each do |track| %>
+			<tr>
+				<td><%= link_to track.artist, track %></td>
+				<td><%= link_to track.name, track %></td>
+				<td><%= link_to track.album, track %></td>
+				<td><%= link_to 'Rösta', '#' %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+
+<% end %>
+
+<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+<%= link_to 'Back', playlists_path %>
