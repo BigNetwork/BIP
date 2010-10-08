@@ -24,7 +24,14 @@ class TracksController < ApplicationController
   # GET /tracks/new
   # GET /tracks/new.xml
   def new
+    
     @track = Track.new
+    unless params[:playlist_id].blank?
+      @playlist = Playlist.find(params[:playlist_id])
+      unless @playlist.nil?
+        @track.playlist_id = @playlist.id
+      end
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +47,44 @@ class TracksController < ApplicationController
   # POST /tracks
   # POST /tracks.xml
   def create
-    @track = Track.new(params[:track])
+    
+    # Make sure we don't create a new track if we already have it:
+    @track = Track.find_or_initialize_by_href(params[:track][:href])
+    
+    unless params[:track][:href].blank?
+      # Find the song with Spotifys metadata API 
+      # (using a wrapper from http://github.com/philnash/meta-spotify)
+      found_track = MetaSpotify::Track.lookup(params[:track][:href])
+      
+      # Only save data if MetaSpotify could find the song
+      unless found_track.blank?
+        @track.name = found_track.name
+        @track.artist = found_track.artists.first.name
+        @track.album = found_track.album.name
+        @track.href = found_track.uri
+        @track.length = found_track.length
+        @track.popularity = found_track.popularity
+        @track.votes_count = 0
+        
+        # Save the playlist_id from the form:
+        unless params[:track][:playlist_id].blank?
+          @track.playlist_id = params[:track][:playlist_id]
+        end
+      end
+      
+    end
+    
+    #@track = Track.new(params[:track])
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to(@track, :notice => 'Track was successfully created.') }
+        format.html { 
+          if @track.playlist_id.blank?
+            redirect_to(@track, :notice => 'The track was added.') 
+          else
+            redirect_to({:controller => :playlists, :action => :show, :id => @track.playlist.id, :highlight_track_id => @track.id}, :notice => 'The track was added.')
+          end
+        }
         format.xml  { render :xml => @track, :status => :created, :location => @track }
       else
         format.html { render :action => "new" }

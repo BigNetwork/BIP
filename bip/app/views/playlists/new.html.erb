@@ -1,5 +1,23 @@
-<h1>New playlist</h1>
+<h1>Ny spellista</h1>
 
-<%= render 'form' %>
+<%= form_for(@playlist) do |f| %>
+  <% if @playlist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
 
-<%= link_to 'Back', playlists_path %>
+      <ul>
+      <% @playlist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Vad vill du kalla spellistan?' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

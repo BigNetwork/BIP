@@ -1,34 +1,89 @@
+<nav>
+	<ul>
+		<% unless @playlist.nil? %>
+		<li><%= link_to 'Rösta', @playlist, { :class => 'current' } %></li>
+		<% end %>
+		<li><%= link_to 'Lägg till', new_playlist_track_path(@playlist) %></li>
+	</ul>
+</nav>
+
+<!--
 <p id="notice"><%= notice %></p>
+-->
+
+<h1><%= @playlist.name %></h1>
+
+<!--
+
+<p><%= link_to 'Ändra', edit_playlist_path(@playlist) %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @playlist.name %>
+	Status: 
+	<% if @playlist.is_playing? %>
+	▶ Spelar
+	<% else %>
+	Pausad
+	<% end %>
 </p>
+
+-->
+
+<!--
+<h2>Rösta upp låtar du vill höra:</h2>
+-->
 
 <% unless @playlist.tracks.empty? %>
 
+	
 	<table class="tracks">
 		<thead>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
+		<tr>
+			<th class="name">Namn</th>
+			<th class="artist">Artist</th>
+			<th class="album">Album</th>
+	<!--		<th>Href</th>-->
+			<th>Popularitet</th>
+			<th>Längd</th>
+			<th>Röster</th>
+	<!--
+			<th></th>
+			<th></th>
+			<th></th>
+	-->
+		</tr>
 		</thead>
 		<tbody>
 		<% @playlist.tracks.each do |track| %>
-			<tr>
-				<td><%= link_to track.artist, track %></td>
-				<td><%= link_to track.name, track %></td>
-				<td><%= link_to track.album, track %></td>
-				<td><%= link_to 'Rösta', '#' %></td>
+			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
+				<td class="name"><%= link_to track.name, track %></td>
+				<td class="artist"><%= track.artist %></td>
+				<td class="album"><%= track.album %></td>
+	<!--			<td><%= link_to track.href, track.href %></td>-->
+				<td>
+					<% unless track.popularity.blank? %>
+					<% 
+						(0..(track.popularity*10).to_i).each do |p|
+							%>|<%
+						end 
+					end
+					%>
+				</td>
+				<td><%= track.length_in_minutes %></td>
+				<td class="votes">
+					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
+				</td>
+	<!--
+				<td><%= link_to 'Show', track %></td>
+				<td><%= link_to 'Edit', edit_track_path(track) %></td>
+				<td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+	-->
 			</tr>
 		<% end %>
 		</tbody>
 	</table>
+	
+	<div class="table_adder">
+		<%= link_to '+ Lägg till en låt', new_playlist_track_path(@playlist) %>
+	</div>
 
 <% end %>
-
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>

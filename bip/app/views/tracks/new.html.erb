@@ -1,5 +1,41 @@
-<h1>New track</h1>
+<nav>
+	<ul>
+		<% unless @playlist.nil? %>
+		<li><%= link_to 'Rösta', @playlist %></li>
+		<% end %>
+		<li><%= link_to 'Lägg till', '#', { :class => 'current' } %></li>
+	</ul>
+</nav>
 
-<%= render 'form' %>
+<h1>Lägg till låt</h1>
 
-<%= link_to 'Back', tracks_path %>
+<%= form_for(@track) do |f| %>
+  <% if @track.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h2>
+
+      <ul>
+      <% @track.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :href, 'Spotify URI' %><br />
+    <%= f.text_field :href %>
+  </div>
+
+  <h3>Vad är en "Spotify URI"?</h3>
+  <p>Det är adressen till en låt i Spotify. </p>
+
+  <h3>Hur hittar man den?</h3>
+  <p>Högerklicka på en låt i Spotify och välj "Copy Spotify URI" så kan du klistra in det här.</p>
+  
+  <%= f.hidden_field :playlist_id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

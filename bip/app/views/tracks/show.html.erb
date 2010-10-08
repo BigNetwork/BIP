@@ -1,14 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @track.name %>
-</p>
-
-<p>
-  <b>Artist:</b>
-  <%= @track.artist %>
-</p>
+<h1><%= @track.artist %> - <%= @track.name %></h1>
 
 <p>
   <b>Album:</b>
@@ -16,8 +8,7 @@
 </p>
 
 <p>
-  <b>Href:</b>
-  <%= @track.href %>
+  <%= link_to 'Lyssna på Spotify', @track.href %>
 </p>
 
 <p>
@@ -27,14 +18,20 @@
 
 <p>
   <b>Length:</b>
-  <%= @track.length %>
+  <%= @track.length_in_minutes %>
 </p>
+
+<h3>Finns i dessa spellistor:</h3>
 
 <p>
-  <b>Playlist:</b>
-  <%= @track.playlist_id %>
+	<% unless @track.playlist.blank? %>
+		<%= link_to @track.playlist.name, @track.playlist %>
+	<% end %>
 </p>
 
+<h3>Röster</h3>
+
+<p><%= @track.votes_count %> (<%= @track.votes.size %>)</p>
 
 <%= link_to 'Edit', edit_track_path(@track) %> |
 <%= link_to 'Back', tracks_path %>

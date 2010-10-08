@@ -4,13 +4,13 @@
   <title>Bip</title>
   <%= stylesheet_link_tag :all %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "application.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 	<header>
 		<h1>
-			<a href="/">
+			<a href="<%= root_path %>">
 				<span class="name">♪ BIP</span>
 				<span class="explanation">Bignetwork Internet Player</span>
 			</a>
@@ -20,29 +20,50 @@
 	
 	<nav>
 		<ul>
-			<li><a href="">Spelningslistor</a></li>
-			<li><a href="">Användare</a></li>
-			<li><a href="">Röster</a></li>
+			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?(playlists_path)) } %></li>
+			<!--<li><%= link_to 'Användare', '#' %></li>-->
+			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 		</ul>
 	</nav>
 	
 	<section id="page">
 
-		<nav>
-			<ul>
-				<li><a class="voting current" href="#vote" onclick="showVoting()">Rösta</a></li>
-				<li><a class="adding" href="#add" onclick="showAdding()">Lägg till</a></li>
-			</ul>
-		</nav>
+
 		
 		<section id="voting">
-			
-			<h2>Rösta upp låtar du vill höra:</h2>
 			
 			<%= yield %>
 		
 		</section>
 	</section>
+	
+	<aside> 
+		<section id="updates"> 
+			<h3>Aktivitet:</h3> 
+			<ul id="activities"> 
+				<li class="activity"> 
+					<span class="icon vote">❤</span> 
+					<a href="#">MPV</a> röstade på <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a> 
+					<span class="timestamp">för en minut sedan</span> 
+				</li> 
+				<li class="activity"> 
+					<span class="icon add">+</span> 
+					<a href="#">MPV</a> la till låten <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a> 
+					<span class="timestamp">för fem minuter sedan</span> 
+				</li> 
+			</ul> 
+		</section> 
+		<section id="about"> 
+			<h3>Vad är BIP?</h3> 
+			<p>I BIP kan man lägga upp och rösta på låtar man gillar. Låtarna med flest röster hamnar överst och spelas först.</p> 
+			<p>Musiken kommer från <a href="http://www.spotify.com/">Spotify</a> och på sikt hoppas vi kunna göra samma sak med YouTube-videor.</p> 
+		</section> 
+	</aside> 
+
+	<footer> 
+		BIP, Bignetwork Internet Player – en produktion av <a href="http://www.bignetwork.se/bst">Bignetwork Software Team</a> 
+	</footer>
+	
 	<%= yield :javascript %>
 </body>
 </html>

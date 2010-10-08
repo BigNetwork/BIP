@@ -1,40 +1,58 @@
-<!--<h1>Listing tracks</h1>-->
+<h1>Alla låtar</h1>
 
-<p>&nbsp;</p>
-
-<table class="tracks">
+<table class="tracks" id="all_tracks">
 	<thead>
 	<tr>
-		<th>Name</th>
-		<th>Artist</th>
-		<th>Album</th>
-		<th>Href</th>
-		<th>Popularity</th>
-		<th>Length</th>
-		<th>Playlist</th>
+		<th class="name">Namn</th>
+		<th class="artist">Artist</th>
+		<th class="album">Album</th>
+<!--		<th>Href</th>-->
+		<th>Popularitet</th>
+		<th>Längd</th>
+		<% if params[:playlist_id].blank? %>
+		<th>Spellista</th>
+		<% end %>
+		<th>Röster</th>
+<!--
 		<th></th>
 		<th></th>
 		<th></th>
+-->
 	</tr>
 	</thead>
 	<tbody>
 	<% @tracks.each do |track| %>
 		<tr class="track">
-			<td><%= link_to track.name, track %></td>
-			<td><%= track.artist %></td>
-			<td><%= track.album %></td>
-			<td><%= link_to track.href, track.href %></td>
-			<td><%= track.popularity %></td>
-			<td><%= track.length %></td>
-			<td><%= track.playlist_id %></td>
+			<td class="name"><%= link_to track.name, track %></td>
+			<td class="artist"><%= track.artist %></td>
+			<td class="album"><%= track.album %></td>
+<!--			<td><%= link_to track.href, track.href %></td>-->
+			<td>
+				<% unless track.popularity.blank? %>
+				<% 
+					(0..(track.popularity*20).to_i).each do |p|
+						%>|<%
+					end 
+				end
+				%>
+			</td>
+			<td><%= track.length_in_minutes %></td>
+			<% if params[:playlist_id].blank? %>
+			<td>
+				<% unless track.playlist.blank? %>
+				<%= link_to track.playlist.name, track.playlist %>
+				<% end %>
+			</td>
+			<% end %>
+			<td class="votes">
+				<%= track.votes_count %>
+			</td>
+<!--
 			<td><%= link_to 'Show', track %></td>
 			<td><%= link_to 'Edit', edit_track_path(track) %></td>
 			<td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+-->
 		</tr>
 	<% end %>
 	</tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Track', new_track_path %>
