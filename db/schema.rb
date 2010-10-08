@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20101008153721) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
-    t.integer  "votes_count"
+    t.integer  "votes_count", :default => 0
   end
 
   create_table "votes", :force => true do |t|
