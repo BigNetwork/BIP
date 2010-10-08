@@ -20,7 +20,7 @@
 	
 	<nav>
 		<ul>
-			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?(playlists_path) || current_page?(root_path)) } %></li>
+			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?({:controller => 'playlists'}) || current_page?(root_path)) } %></li>
 			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 		</ul>
