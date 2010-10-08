@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Bip</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "bip.css" %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "application.js" %>
   <%= csrf_meta_tag %>
@@ -20,7 +20,7 @@
 	
 	<nav>
 		<ul>
-			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?(playlists_path)) } %></li>
+			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?(playlists_path) || current_page?(root_path)) } %></li>
 			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 		</ul>
