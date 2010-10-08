@@ -42,29 +42,26 @@
 			<h3>Aktivitet:</h3> 
 			<ul id="activities"> 
 				<% unless @latest_votes.blank? %>
-				<% @latest_votes.each do |vote| %>
-				<li class="activity"> 
-					<span class="icon add">+</span> 
-					<%= link_to 'MPV', '#' %>
-					röstade på låten
-					<% unless vote.track.blank? %>
-						<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote %>
+					<% @latest_votes.each do |vote| %>
+					<li class="activity"> 
+						<span class="icon add">+</span> 
+						<%= link_to 'MPV', '#' %>
+						röstade på låten
+						<% unless vote.track.blank? %>
+							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote %>
+						<% end %>
+						<span class="timestamp"><%= time_ago_in_words vote.created_at %> ago</span>
+						<%= link_to '#', vote %>
+					</li> 
 					<% end %>
-					<span class="timestamp"><%= time_ago_in_words vote.created_at %> ago</span>
-					<%= link_to '#', vote %>
-				</li> 
 				<% end %>
-				<% end %>
-				<li class="activity"> 
-					<span class="icon vote">❤</span> 
-					<a href="#">MPV</a> röstade på <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a> 
-					<span class="timestamp">för en minut sedan</span> 
-				</li>
+				<!--
 				<li class="activity"> 
 					<span class="icon add">+</span> 
 					<a href="#">MPV</a> la till låten <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a> 
 					<span class="timestamp">för fem minuter sedan</span> 
 				</li>
+				-->
 			</ul> 
 		</section> 
 		<section id="about"> 
