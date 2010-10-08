@@ -1,6 +1,6 @@
 class Track < ActiveRecord::Base
   belongs_to :playlist
-  has_many :votes
+  has_many :votes, :dependent => :destroy
   acts_as_list :scope => :playlist
   
   # Output length in minutes instead of seconds:
