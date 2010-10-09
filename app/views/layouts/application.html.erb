@@ -48,7 +48,7 @@
 						<%= link_to 'Någon', '#' %>
 						röstade på låten<br/>
 						<% unless vote.track.blank? %>
-							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote %>
+							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote.track %>
 						<% end %>
 						<span class="timestamp"><%= time_ago_in_words vote.created_at %> sedan</span>
 						<%= link_to '#', vote %>
