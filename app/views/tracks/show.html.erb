@@ -1,7 +1,15 @@
+<% unless @playlist.nil? %>
+<nav class="breadcrumbs">
+  <ul>
+    <li><%= link_to "← Tillbaka till " + @playlist.name, @playlist %></li>
+  </ul>
+</nav>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<% unless @artist_image_url.blank? %>
-<img src="<%= @artist_image_url %>" class="artist_cover" />
+<% unless @track.album_image_url.blank? %>
+<img src="<%= @track.album_image_url %>" class="artist_cover" />
 <% end %>
 
 <h2><%= @track.artist %></h2>
@@ -12,11 +20,11 @@
 </div>
 
 <p>
-  <%= link_to 'Lyssna på Spotify', @track.href %>
+  <%= @track.length_in_minutes.to_s.gsub("\.", ":") %>
 </p>
 
 <p>
-  <%= @track.length_in_minutes.to_s %>m
+  <%= link_to image_tag("icon_spotify.png") + " Lyssna", @track.href, { :class => 'button listen' } %>
 </p>
 
 <h3>Finns i dessa spellistor:</h3>

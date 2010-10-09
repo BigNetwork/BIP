@@ -11,6 +11,10 @@ body{
     font-family: sans-serif;
 }
 
+a:link{
+    color: #339;
+}
+
 a{
     position: relative;
 }
@@ -40,7 +44,7 @@ header a{
 }
 
 header .name{
-    color: #3c3;
+    color: /*#3c3*/ #74B619;
     font-size: 120%;
 }
 
@@ -431,10 +435,37 @@ th.sorting{
     text-indent: 0;
 }
 
+.button{}
+
+.button img{
+}
+
+.button.listen{
+    background: #74B619;
+    border: 2px solid #4D8429;
+    border-radius: 0.4em;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.3em 0.7em;
+    text-decoration: none;
+}
+
 .artist_cover{
     -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 3px 6px;
     border: 1px solid #999;
+    border-left-color: #ccc;
+    border-top-color: #ccc;
     border-radius: 2px;
+    float: right;
+}
+
+#voting_tip{
+    color: #f39;
+    font-weight: bold;
+    float: right;
+    margin-top: 1em;
+    margin-right: -1em;
 }
 
 aside{

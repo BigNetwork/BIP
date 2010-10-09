@@ -11,6 +11,8 @@
 <p id="notice"><%= notice %></p>
 -->
 
+<div id="voting_tip">Rösta på en låt du gillar &darr;</div>
+
 <h1><%= @playlist.name %></h1>
 
 <!--
@@ -55,7 +57,7 @@
 		<tbody>
 		<% @playlist.tracks.each do |track| %>
 			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
-				<td class="name"><%= link_to track.name, track %></td>
+				<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>
 				<td class="artist"><%= track.artist %></td>
 				<td class="album"><%= track.album %></td>
 	<!--			<td><%= link_to track.href, track.href %></td>-->
