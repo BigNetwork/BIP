@@ -431,6 +431,12 @@ th.sorting{
     text-indent: 0;
 }
 
+.artist_cover{
+    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 3px 6px;
+    border: 1px solid #999;
+    border-radius: 2px;
+}
+
 aside{
     color: #666;
     display: block;

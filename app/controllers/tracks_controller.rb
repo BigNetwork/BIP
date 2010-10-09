@@ -15,6 +15,17 @@ class TracksController < ApplicationController
   def show
     @track = Track.find(params[:id])
 
+    require 'net/http'
+    require 'json'
+    url = URI.parse("http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=b25b959554ed76058ac220b7b2e0a026&format=json&artist=#{@track.artist.gsub("\ ", "+")}&track=#{@track.name.gsub("\ ", "+")}")
+    resp = Net::HTTP.get_response(url)
+    data = resp.body
+    result = JSON.parse(data)
+
+    unless result["track"]["album"].nil?
+      @artist_image_url = result["track"]["album"]["image"][1]["#text"]
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @track }
