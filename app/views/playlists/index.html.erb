@@ -30,7 +30,7 @@
 	</td>
 	<td>
 		<% unless playlist.tracks.blank? %>
-			<%= link_to "#{playlist.tracks.first.artist} - #{playlist.tracks.first.name}", playlist.tracks.first %>
+			<%= link_to "#{playlist.tracks.first.artist} - #{playlist.tracks.first.name}", playlist_track_path(playlist, playlist.tracks.first) %>
 		<% end %>
 	</td>
 <!--
