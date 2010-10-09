@@ -17,10 +17,9 @@
 		</h1>
 		<!-- ♫  ♪ -->
 	</header>
-	
 	<nav>
 		<ul>
-			<li><%= link_to 'Spelningslistor', playlists_path, { :class => ("current" if current_page?({:controller => 'playlists'}) || current_page?(root_path)) } %></li>
+			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') } %></li>
 			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 		</ul>
@@ -29,6 +28,7 @@
 	<section id="page">
 
 
+<%=  %>	
 		
 		<section id="voting">
 			
@@ -44,13 +44,13 @@
 				<% unless @latest_votes.blank? %>
 					<% @latest_votes.each do |vote| %>
 					<li class="activity"> 
-						<span class="icon add">+</span> 
-						<%= link_to 'MPV', '#' %>
-						röstade på låten
+						<span class="icon vote">❤</span> 
+						<%= link_to 'Någon', '#' %>
+						röstade på låten<br/>
 						<% unless vote.track.blank? %>
 							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote %>
 						<% end %>
-						<span class="timestamp"><%= time_ago_in_words vote.created_at %> ago</span>
+						<span class="timestamp"><%= time_ago_in_words vote.created_at %> sedan</span>
 						<%= link_to '#', vote %>
 					</li> 
 					<% end %>
