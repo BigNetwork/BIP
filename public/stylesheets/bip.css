@@ -35,6 +35,7 @@ header{
 }
 
 header h1{
+    margin-bottom: -0.5em;
     padding-left: 0.8em;
     text-shadow: 1px 1px 0 #fff;
 }
@@ -44,8 +45,21 @@ header a{
 }
 
 header .name{
+    background: url('/images/bip-logo3-small.png') no-repeat;  
     color: /*#3c3*/ #74B619;
-    font-size: 120%;
+    display: inline-block;
+    font-size: 67%;
+    height: 27px;
+    text-indent: -6000px;
+    width: 40px;
+}
+
+header a:hover .name{
+/*    background-image: url('/images/bip-logo3-small-green.png');*/
+}
+
+header a:hover .explanation{
+    color: #74B619;
 }
 
 header .explanation{
@@ -72,6 +86,7 @@ body>nav>ul{
 
 body>nav>ul>li{
     display: inline;
+    float: right;
     list-style-type: none;
 }
 
@@ -103,6 +118,7 @@ section#page{
     background: #fff;
     border: 1px solid #ddd;
     -moz-border-radius: 0.5em;
+    clear: both;
     border-radius: 0.5em;
     display: block;
     margin: 0 auto;
@@ -422,6 +438,10 @@ th.sorting{
     width: 35px;
 }
 
+.icon.vote:hover{
+    background-color: #f5b;
+}
+
 .icon.open{
     background-color: #ccc;
     background-image: url('mini-icons/eye.png');
@@ -452,12 +472,14 @@ th.sorting{
 }
 
 .artist_cover{
-    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 3px 6px;
-    border: 1px solid #999;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 2px 6px;
+    -webkit-background-clip: padding-box; 
+    border: 1px solid #666;
     border-left-color: #ccc;
     border-top-color: #ccc;
-    border-radius: 2px;
-    float: right;
+    border-radius: 0.5em;
+    float: left;
+    margin-right: 1.5em;
 }
 
 #voting_tip{

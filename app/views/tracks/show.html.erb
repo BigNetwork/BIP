@@ -20,13 +20,17 @@
 </div>
 
 <p>
+&nbsp;
+<!--
   <%= @track.length_in_minutes.to_s.gsub("\.", ":") %>
+-->
 </p>
 
 <p>
   <%= link_to image_tag("icon_spotify.png") + " Lyssna", @track.href, { :class => 'button listen' } %>
 </p>
 
+<!--
 <h3>Finns i dessa spellistor:</h3>
 
 <p>
@@ -36,4 +40,4 @@
 </p>
 
 <h3>Röster: <%= @track.votes_count %></h3>
-
+-->

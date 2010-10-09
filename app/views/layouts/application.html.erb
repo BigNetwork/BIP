@@ -19,9 +19,9 @@
 	</header>
 	<nav>
 		<ul>
-			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') || !params[:playlist_id].blank? } %></li>
 			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
+			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') || !params[:playlist_id].blank? } %></li>
 		</ul>
 	</nav>
 	
