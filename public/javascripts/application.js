@@ -46,6 +46,10 @@ $(function(){
         $("form#new_track").hide();
         $("#spotify_search_status").hide();
 
+        $("a.vote").click(function(e){
+           location.reload();
+        });
+
 });
 
 function searchSpotify(query){
