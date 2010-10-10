@@ -59,7 +59,7 @@ header a:hover .name{
 }
 
 header a:hover .explanation{
-    color: #74B619;
+    color: #3c3;
 }
 
 header .explanation{
@@ -102,7 +102,7 @@ body>nav>ul>li>a{
 
 body>nav>ul>li>a.current{
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-bottom: none;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
@@ -115,8 +115,9 @@ body>section{
 */
 
 section#page{
+    -webkit-box-shadow: rgba(0, 0, 0, 0.296094) 2px 2px 5px;
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     -moz-border-radius: 0.5em;
     clear: both;
     border-radius: 0.5em;
@@ -201,14 +202,15 @@ section#page h2{
     padding: 1em 1.5em;
 }
 
-table.tracks{
+table{
     border-spacing: 0;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.tracks thead th{
+thead th{
+    border-bottom: 1px solid #ccc;
     color: #666;
     font-size: 0.8em;
     font-weight: normal;
@@ -241,16 +243,16 @@ table.tracks{
     display: none;
 }*/
 
-.track a{
+td a{
     color: #339;
     text-decoration: none;
 }
 
-.track a:hover{
+td a:hover{
     text-decoration: underline;
 }
 
-.track td{
+td{
     background: #F6F6F6;
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
@@ -320,39 +322,6 @@ table.tracks{
 /*    margin-left: 0.5em;*/
 }
 
-table.playlists{
-    border-spacing: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.playlists thead th{
-    color: #666;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.3em 0.8em;
-    text-align: left;
-}
-
-.playlist td{
-    background: #F6F6F6;
-    border-bottom: 1px solid #EAEAEA;
-    border-top: 1px solid #fff;
-    color: #333;
-    font-size: 90%;
-    padding: 0.5em 0.7em;
-    text-shadow: 1px 1px 0px #fff;
-}
-
-.playlist a{
-    color: #339;
-    text-decoration: none;
-}
-
-.playlist a:hover{
-    text-decoration: underline;
-}
 
 th.sorting_asc{
     cursor: s-resize;
@@ -432,10 +401,13 @@ th.sorting{
 .icon.vote{
     background-color: #f39;
 /*    background-image: url('mini-icons/heart.png');*/
-    text-indent: 0px;
+    border-bottom-color: #c06;
     font-size: 120%;
+    height: 1.2em;
+    text-indent: 0px;
     line-height: 115%;
-    width: 35px;
+    text-shadow: 0 -1px 0 #c06;
+    width: 2.2em;
 }
 
 .icon.vote:hover{
@@ -471,6 +443,21 @@ th.sorting{
     text-decoration: none;
 }
 
+.button.add{
+    background: #3c3;
+    border-top: 1px solid lightgreen;
+    border-bottom: 1px solid green;
+    border-radius: 0.4em;
+    color: #fff;
+    padding: 0.3em 0.7em;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 #090; 
+}
+
+.button.add:hover{
+    background-color: #4d4;
+}
+
 .artist_cover{
     -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 2px 6px;
     -webkit-background-clip: padding-box; 
@@ -482,21 +469,99 @@ th.sorting{
     margin-right: 1.5em;
 }
 
-#voting_tip{
+#playlist_tip{
+    color: #999;
+    float: right;
+    line-height: 2.2em;
+    margin-bottom: 1em;
+    margin-top: 0em;
+    margin-right: -0.5em;
+    text-align: left;
+}
+
+#playlist_tip .voting{
     color: #f39;
     font-weight: bold;
-    float: right;
-    margin-top: 1em;
-    margin-right: -1em;
+}
+
+.display_mode{
+    color: #999;
+    font-size: 80%;
+    margin-top: 0;
+}
+
+.display_mode a{
+    color: #666;
+    padding: 0.1em 0.3em;
+}
+
+.display_mode a.current{
+    background: #eee;
+    border-radius: 0.3em;
+    color: #333;
+    text-decoration: none;
+}
+
+ul.tracks{
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.tracks li{
+    display: inline-block;
+    float: left;
+    font-size: 80%;
+    min-height: 126px;
+    list-style-type: none;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    width: 126px;
+}
+
+.tracks li .cover{
+/*    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 2px 6px;*/
+    background-repeat: no-repeat;
+    border: 1px solid #666;
+    border-left-color: #ccc;
+    border-top-color: #ccc;
+    border-radius: 0.9em;
+    margin-bottom: 0.9em;
+}
+
+.tracks li a{
+    color: #000;
+    text-decoration: none;
+}
+
+.tracks li .artist{
+    display: block;
+}
+
+.tracks li .name{
+    display: block;
+    font-size: 130%;
+}
+
+.tracks li .votes{
+    display: block;
+    font-size: 70%;
+    margin-top: 0.5em;
+}
+
+.tracks li .votes a{
+    line-height: 1.2em !important;
 }
 
 aside{
     color: #666;
     display: block;
-    font-size: 80%;
+    font-size: 70%;
 /*    float: right;*/
     margin: 0 auto;
-    max-width: 760px;
+    max-width: 800px;
 }
 
 aside>section{
@@ -518,7 +583,7 @@ aside a{
 }
 
 #activities li{
-    line-height: 2.0em;
+    margin-bottom: 0.5em;
 }
 
 .activity .icon{

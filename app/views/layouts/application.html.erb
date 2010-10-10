@@ -46,12 +46,11 @@
 					<li class="activity"> 
 						<span class="icon vote">❤</span> 
 						<%= link_to 'Någon', '#' %>
-						röstade på låten<br/>
+						röstade på låten
 						<% unless vote.track.blank? %>
 							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote.track %>
 						<% end %>
 						<span class="timestamp"><%= time_ago_in_words vote.created_at %> sedan</span>
-						<%= link_to '#', vote %>
 					</li> 
 					<% end %>
 				<% end %>

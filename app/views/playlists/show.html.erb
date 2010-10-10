@@ -1,3 +1,4 @@
+<!--
 <nav>
 	<ul>
 		<% unless @playlist.nil? %>
@@ -6,18 +7,27 @@
 		<li><%= link_to 'Lägg till', new_playlist_track_path(@playlist) %></li>
 	</ul>
 </nav>
+-->
 
 <!--
 <p id="notice"><%= notice %></p>
 -->
 
-<div id="voting_tip">Rösta på en låt du gillar &darr;</div>
+<div id="playlist_tip">
+  <%= link_to '+ Lägg till en låt', new_playlist_track_path(@playlist), { :class => 'button add' } %> &nbsp; eller<br/> 
+  <span class="voting">Rösta på en låt du gillar &darr;</span>
+</div>
 
 <h1><%= @playlist.name %></h1>
 
-<!--
+<p class="display_mode">
+  Visa: 
+  <%= link_to 'tabell', { :display => 'table'}, { :class => ('current' if params[:display] != 'list') } %>
+  eller
+  <%= link_to 'lista', { :display => 'list'}, { :class => ('current' if params[:display] == 'list') } %>
+</p>
 
-<p><%= link_to 'Ändra', edit_playlist_path(@playlist) %></p>
+<!--
 
 <p>
 	Status: 
@@ -30,9 +40,24 @@
 
 -->
 
-<!--
-<h2>Rösta upp låtar du vill höra:</h2>
--->
+<% if params[:display] == 'list' %>
+
+  <ul class="tracks">
+  <% unless @playlist.tracks.empty? %>
+    <% @playlist.tracks.each do |track| %>
+      <li>
+        <a href="<%= playlist_track_path(@playlist, track) %>">
+        <%= image_tag(track.album_image_url || '', { :alt => "", :height => 126, :width => 126, :class => 'cover' } ) %>
+        <span class="artist"><%= track.artist %></span>
+        <span class="name"><%= track.name %></span>
+        </a>
+        <span class="votes"><%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :method => :post, :class => 'icon vote', :title => 'Rösta'} %></span>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+
+<% else # (if params[:display] == 'table' or params[:display].nil %>
 
 <% unless @playlist.tracks.empty? %>
 
@@ -70,7 +95,7 @@
 					end
 					%>
 				</td>
-				<td><%= track.length_in_minutes %></td>
+				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
 				<td class="votes">
 					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
 				</td>
@@ -84,8 +109,12 @@
 		</tbody>
 	</table>
 <% end %>	
-	
+
+<!--
 <div class="table_adder">
 	<%= link_to '+', new_playlist_track_path(@playlist), { :class => 'icon small add' } %>
 	<%= link_to 'Lägg till en låt', new_playlist_track_path(@playlist) %>
 </div>
+-->
+
+<% end %>
