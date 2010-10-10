@@ -222,9 +222,6 @@ thead th{
     border-right: 1px solid #eee;
 }
 
-.track{
-}
-
 .track.highlight td{
     background: #dfc;
 }
@@ -260,6 +257,10 @@ td{
     font-size: 90%;
     padding: 0.5em 0.7em;
     text-shadow: 1px 1px 0px #fff;
+}
+
+tr:hover td{
+    background-color: #fff;
 }
 
 .track.add a{
@@ -407,7 +408,7 @@ th.sorting{
     text-indent: 0px;
     line-height: 115%;
     text-shadow: 0 -1px 0 #c06;
-    width: 2.2em;
+    min-width: 2.2em;
 }
 
 .icon.vote:hover{

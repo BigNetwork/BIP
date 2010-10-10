@@ -23,7 +23,7 @@
 <p class="display_mode">
   Visa: 
   <%= link_to 'tabell', { :display => 'table'}, { :class => ('current' if params[:display] != 'list') } %>
-  eller
+  
   <%= link_to 'lista', { :display => 'list'}, { :class => ('current' if params[:display] == 'list') } %>
 </p>
 
@@ -51,7 +51,7 @@
         <span class="artist"><%= track.artist %></span>
         <span class="name"><%= track.name %></span>
         </a>
-        <span class="votes"><%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :method => :post, :class => 'icon vote', :title => 'Rösta'} %></span>
+        <span class="votes"><%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %></span>
       </li>
     <% end %>
   <% end %>
@@ -97,7 +97,7 @@
 				</td>
 				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
 				<td class="votes">
-					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
+					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
 				</td>
 	<!--
 				<td><%= link_to 'Show', track %></td>
