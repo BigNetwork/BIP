@@ -288,6 +288,7 @@ tr:hover td{
 
 .track .action{
     padding: 0;
+    padding-left: 0.5em;
     width: 25px;
 }
 
@@ -517,7 +518,7 @@ ul.tracks{
     display: inline-block;
     float: left;
     font-size: 80%;
-    min-height: 126px;
+    min-height: 240px;
     list-style-type: none;
     margin-right: 2em;
     margin-bottom: 2em;

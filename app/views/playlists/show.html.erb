@@ -65,7 +65,7 @@
 	<table class="tracks">
 		<thead>
 		<tr>
-			<th class="votes">Röster</th>
+			<th class="action votes">Röster</th>
 			<th class="name">Namn</th>
 			<th class="artist">Artist</th>
 <!--			<th class="album">Album</th>-->
@@ -82,7 +82,7 @@
 		<tbody>
 		<% @playlist.tracks.each do |track| %>
 			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
-				<td class="votes">
+				<td class="action votes">
 					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
 				</td>
 			<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>

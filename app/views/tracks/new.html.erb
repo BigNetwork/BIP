@@ -1,13 +1,37 @@
-<nav>
-	<ul>
-		<% unless @playlist.nil? %>
-		<li><%= link_to 'Rösta', @playlist %></li>
-		<% end %>
-		<li><%= link_to 'Lägg till', '#', { :class => 'current' } %></li>
-	</ul>
+<% unless @playlist.nil? %>
+<nav class="breadcrumbs">
+  <ul>
+    <li><%= link_to "← Tillbaka till " + @playlist.name, @playlist %></li>
+  </ul>
 </nav>
+<% end %>
 
 <h1>Lägg till låt</h1>
+
+<form id="spotify_search" action="" method="get">
+<label for="query">Sök:</label>
+<input type="search" id="query" name="query" placeholder="Artist/låt/album" />
+<input type="submit" name="submit" value="Sök →" />
+</form>
+
+<table id="spotify_search_results">
+  <thead>
+    <tr>
+      <th class="add"></th>
+      <th class="name">Namn:</th>
+      <th class="artist">Artist:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="add"></td>
+      <td class="name"></td>
+      <td class="artist"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="spotify_search_status"></div>
 
 <%= form_for(@track) do |f| %>
   <% if @track.errors.any? %>
