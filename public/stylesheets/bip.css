@@ -362,7 +362,8 @@ th.sorting{
     background-repeat: no-repeat;
     background-size: 60%;
     -moz-background-size: 60%;
-    border-bottom: 1px solid #aaa;
+    border: 1px solid #aaa;
+    border-left: 1px solid #fff;
     border-top: 1px solid #fff;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -374,13 +375,13 @@ th.sorting{
     line-height: 0.9em;
     margin: 0 0.3em 0 0;
     overflow: hidden;
-    padding: 0 1px;
+    padding: 0 0.25em;
     text-indent: -2000px;
     text-align: center;
     text-decoration: none !important;
     text-shadow: none;
 /*    vertical-align: -0.3em;*/
-    width: 20px;
+    white-space: nowrap;
 }
 
 .icon.small{
@@ -403,12 +404,12 @@ th.sorting{
     background-color: #f39;
 /*    background-image: url('mini-icons/heart.png');*/
     border-bottom-color: #c06;
+    border-right-color: #c06;
     font-size: 120%;
     height: 1.2em;
     text-indent: 0px;
     line-height: 115%;
     text-shadow: 0 -1px 0 #c06;
-    min-width: 2.2em;
 }
 
 .icon.vote:hover{
@@ -446,8 +447,9 @@ th.sorting{
 
 .button.add{
     background: #3c3;
+    border: 1px solid green;
     border-top: 1px solid lightgreen;
-    border-bottom: 1px solid green;
+    border-left: 1px solid lightgreen;
     border-radius: 0.4em;
     color: #fff;
     font-weight: bold; 

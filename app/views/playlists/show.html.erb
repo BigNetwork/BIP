@@ -65,13 +65,13 @@
 	<table class="tracks">
 		<thead>
 		<tr>
+			<th class="votes">Röster</th>
 			<th class="name">Namn</th>
 			<th class="artist">Artist</th>
-			<th class="album">Album</th>
+<!--			<th class="album">Album</th>-->
 	<!--		<th>Href</th>-->
-			<th>Popularitet</th>
+<!--			<th>Popularitet</th>-->
 			<th>Längd</th>
-			<th>Röster</th>
 	<!--
 			<th></th>
 			<th></th>
@@ -82,11 +82,14 @@
 		<tbody>
 		<% @playlist.tracks.each do |track| %>
 			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
-				<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>
+				<td class="votes">
+					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
+				</td>
+			<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>
 				<td class="artist"><%= track.artist %></td>
-				<td class="album"><%= track.album %></td>
+<!--				<td class="album"><%= track.album %></td>-->
 	<!--			<td><%= link_to track.href, track.href %></td>-->
-				<td>
+<!--				<td>
 					<% unless track.popularity.blank? %>
 					<% 
 						(0..(track.popularity*10).to_i).each do |p|
@@ -95,10 +98,8 @@
 					end
 					%>
 				</td>
+-->
 				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
-				<td class="votes">
-					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
-				</td>
 	<!--
 				<td><%= link_to 'Show', track %></td>
 				<td><%= link_to 'Edit', edit_track_path(track) %></td>
