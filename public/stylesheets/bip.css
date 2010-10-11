@@ -36,7 +36,7 @@ header{
 
 header h1{
     margin-bottom: -0.5em;
-    padding-left: 0.8em;
+    padding-left: 0.0em;
     text-shadow: 1px 1px 0 #fff;
 }
 
@@ -70,7 +70,7 @@ header .explanation{
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', 'Lucida Grande', 'Trebuchet MS', sans-serif;
 }
 
 body>nav{
@@ -98,6 +98,10 @@ body>nav>ul>li>a{
     margin-bottom: -1px;
     padding: 0.4em 0.7em;
     text-decoration: none;
+}
+
+body>nav>ul>li>a:hover{
+    color: #3c3;
 }
 
 body>nav>ul>li>a.current{
@@ -216,6 +220,14 @@ thead th{
     font-weight: normal;
     padding: 0.3em 0.8em;
     text-align: left;
+}
+
+table tr:last-child td:first-child{
+    border-bottom-left-radius: 0.5em;
+}
+
+table tr:last-child td:last-child{
+    border-bottom-right-radius: 0.5em;
 }
 
 .tracks thead .artist, .tracks thead .name{
@@ -472,6 +484,11 @@ th.sorting{
     border-radius: 0.5em;
     float: left;
     margin-right: 1.5em;
+}
+
+table.playlists td:first-child {
+    font-size: 130%;
+    font-weight: bold;
 }
 
 #playlist_tip{
