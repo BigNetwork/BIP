@@ -82,7 +82,7 @@ function renderTracks(tracks){
 	// Remove old search results:
 	clearSearchResults();
 	
-	console.log(tracks);
+	//console.log(tracks);
 
         var playlist_id = $("input#track_playlist_id").val();
 
