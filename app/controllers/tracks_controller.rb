@@ -2,7 +2,11 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.xml
   def index
-    @tracks = Track.all(:order => "votes_count DESC")
+    unless params[:playlist_id].nil?
+      @tracks = Track.all(:playlist_id => params[:playlist_id], :order => "votes_count DESC")
+    else
+      @tracks = Track.all(:order => "votes_count DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
