@@ -422,6 +422,7 @@ th.sorting{
     height: 1.2em;
     text-indent: 0px;
     line-height: 115%;
+    text-align: right !important;
     text-shadow: 0 -1px 0 #c06;
 }
 
