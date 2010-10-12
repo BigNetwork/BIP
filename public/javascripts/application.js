@@ -35,7 +35,7 @@ $(function(){
 			"sSearch": "Sök:"
 		}
 	});
-
+/*
 	$("table#playlist_tracks").dataTable({
 		"aaSorting": [[ 0, "desc" ]],
 		"aoColumns": [ 
@@ -54,7 +54,7 @@ $(function(){
 			"sSearch": "Sök:"
 		}
 	});
-
+*/
         $("form#spotify_search").submit(function(e){
             var query = $("form#spotify_search input#query").val();
             searchSpotify(query);
