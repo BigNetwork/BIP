@@ -3,7 +3,7 @@ class TracksController < ApplicationController
   # GET /tracks.xml
   def index
     unless params[:playlist_id].nil?
-      @tracks = Track.all(:playlist_id => params[:playlist_id], :order => "votes_count DESC")
+      @tracks = Track.find_all_by_playlist_id(params[:playlist_id], :order => "votes_count DESC")
     else
       @tracks = Track.all(:order => "votes_count DESC")
     end
