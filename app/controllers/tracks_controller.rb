@@ -2,11 +2,12 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.xml
   def index
-    @tracks = Track.all
+    @tracks = Track.all(:order => "votes_count DESC")
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tracks }
+      format.json { render :json => @tracks }
     end
   end
 
