@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :playlist_id %><br />
+    <%= f.label :playlist_id %><%#, Playlist.human_name.humanize %><br />
     <%= f.text_field :playlist_id %>
   </div>
   <div class="field">
-    <%= f.label :track_id %><br />
+    <%= f.label :track_id %><%#, Track.human_name.humanize %><br />
     <%= f.text_field :track_id %>
-  </div>
-  <div class="field">
-    <%= f.label :votes_count %><br />
-    <%= f.text_field :votes_count %>
   </div>
   <div class="actions">
     <%= f.submit %>

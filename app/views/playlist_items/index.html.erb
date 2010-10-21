@@ -12,8 +12,8 @@
 
 <% @playlist_items.each do |playlist_item| %>
   <tr>
-    <td><%= playlist_item.playlist_id %></td>
-    <td><%= playlist_item.track_id %></td>
+    <td><%= link_to playlist_item.playlist.name, playlist_item.playlist unless playlist_item.playlist.nil? %></td>
+    <td><%= link_to playlist_item.track.name, playlist_item.track unless playlist_item.track.nil? %></td>
     <td><%= playlist_item.votes_count %></td>
     <td><%= link_to 'Show', playlist_item %></td>
     <td><%= link_to 'Edit', edit_playlist_item_path(playlist_item) %></td>

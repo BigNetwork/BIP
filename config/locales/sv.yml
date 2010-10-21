@@ -146,14 +146,30 @@
     # custom blank validation message for login attribute of User model.
     # models:
 
+  activerecord:
     # Translate model names. Used in Model.human_name().
-    #models:
+    models:
+      playlist: "spellista"
+      track: "låt"
+      playlist_item: "låt i spellistan"
+      album: "album"
+      vote: "röst"
       # For example,
       #   user: "Dude"
       # will translate User model name to "Dude"
 
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
-    #attributes:
+    attributes:
+      track:
+        name: "namn"
+        popularity: "popularitet"
+        votes_count: "röster"
+      playlist_item:
+        votes_count: "röster"
+      album:
+        name: "namn"
+      artist:
+        name: "namn"
       # For example,
       #   user:
       #     login: "Handle"
