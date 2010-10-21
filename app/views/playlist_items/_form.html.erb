@@ -12,13 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :playlist_id %><%#, Playlist.human_name.humanize %><br />
-    <%= f.text_field :playlist_id %>
+    <%#= f.label :playlist_id %><%#, Playlist.human_name.humanize %><br />
+    <%= f.hidden_field :playlist_id %>
   </div>
+<!--
   <div class="field">
-    <%= f.label :track_id %><%#, Track.human_name.humanize %><br />
-    <%= f.text_field :track_id %>
+    <%#= f.label :track_id %><%#, Track.human_name.humanize %><br />
+    <%#= f.text_field :track_id %>
   </div>
+-->
+
+  <h3>Lägg till låt via:</h3>
+
+  <div class="field">
+    <%= label_tag 'searched_false', 'Spotify-URI:' %>
+    <%= radio_button_tag 'searched', false, true %>
+    <%#= f.label :spotify_id, 'Spotify-ID' %><br />
+    spotify:track:
+	<%= text_field_tag 'spotify_id', '' %>
+  </div>
+
+  <div class="field">
+  	<%= label_tag 'searched_true', 'Sökning:' %>
+  	<%= radio_button_tag 'searched', true %>
+
+  	<%= search_field_tag 'query' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

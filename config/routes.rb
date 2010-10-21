@@ -1,7 +1,5 @@
 Bip::Application.routes.draw do
 
-  resources :playlist_items
-
   resources :artists do
     resources :tracks
   end
@@ -19,7 +17,10 @@ Bip::Application.routes.draw do
 
   resources :playlists do
     resources :tracks
+    resources :items, :controller => :playlist_items
   end
+  
+  resources :playlist_items
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

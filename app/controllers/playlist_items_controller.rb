@@ -15,6 +15,10 @@ class PlaylistItemsController < ApplicationController
   def show
     @playlist_item = PlaylistItem.find(params[:id])
 
+    unless params[:playlist_id].blank?
+      @playlist = Playlist.find(params[:playlist_id])
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @playlist_item }
@@ -25,7 +29,13 @@ class PlaylistItemsController < ApplicationController
   # GET /playlist_items/new.xml
   def new
     @playlist_item = PlaylistItem.new
-
+    unless params[:playlist_id].blank?
+      @playlist = Playlist.find(params[:playlist_id])
+      unless @playlist.nil?
+        @playlist_item.playlist_id = @playlist.id
+      end
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @playlist_item }
@@ -41,7 +51,36 @@ class PlaylistItemsController < ApplicationController
   # POST /playlist_items.xml
   def create
     @playlist_item = PlaylistItem.new(params[:playlist_item])
-
+    
+    # Make sure we don't create a new track if we already have it:
+    @track = Track.find_or_create_by_spotify_id(params[:spotify_id])
+    
+    @playlist_item.track_id = @track.id
+    
+    unless params[:spotify_id].blank?
+      # Find the song with Spotifys metadata API 
+      # (using a wrapper from http://github.com/philnash/meta-spotify)
+      found_track = MetaSpotify::Track.lookup(params[:spotify_id])
+      
+      # Only save data if MetaSpotify could find the song
+      unless found_track.blank?
+        @track.name = found_track.name
+        @track.artist = found_track.artists.first.name
+        @track.album = found_track.album.name
+        @track.href = found_track.uri
+        @track.length = found_track.length
+        @track.popularity = found_track.popularity
+        @track.votes_count = 0
+        @track.save!
+        
+        # Save the playlist_id from the form:
+        unless params[:playlist_item][:playlist_id].blank?
+          @playlist_item.playlist_id = params[:track][:playlist_id]
+        end
+      end
+      
+    end
+    
     respond_to do |format|
       if @playlist_item.save
         format.html { redirect_to(@playlist_item, :notice => 'Playlist item was successfully created.') }
