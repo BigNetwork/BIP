@@ -1,0 +1,27 @@
+<h1>Listing playlist_items</h1>
+
+<table>
+  <tr>
+    <th>Playlist</th>
+    <th>Track</th>
+    <th>Votes count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @playlist_items.each do |playlist_item| %>
+  <tr>
+    <td><%= playlist_item.playlist_id %></td>
+    <td><%= playlist_item.track_id %></td>
+    <td><%= playlist_item.votes_count %></td>
+    <td><%= link_to 'Show', playlist_item %></td>
+    <td><%= link_to 'Edit', edit_playlist_item_path(playlist_item) %></td>
+    <td><%= link_to 'Destroy', playlist_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Playlist item', new_playlist_item_path %>

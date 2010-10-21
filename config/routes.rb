@@ -1,11 +1,21 @@
 Bip::Application.routes.draw do
-  resources :artists
 
-  resources :albums
+  resources :playlist_items
+
+  resources :artists do
+    resources :tracks
+  end
+  
+  resources :albums do
+    resources :tracks
+  end
 
   resources :votes
 
-  resources :tracks
+  resources :tracks do
+    resource :album
+    resource :artist
+  end
 
   resources :playlists do
     resources :tracks
