@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  spotify_id: MyString
+  released: 1
+
+two:
+  name: MyString
+  spotify_id: MyString
+  released: 1

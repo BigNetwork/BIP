@@ -1,4 +1,8 @@
 Bip::Application.routes.draw do
+  resources :artists
+
+  resources :albums
+
   resources :votes
 
   resources :tracks

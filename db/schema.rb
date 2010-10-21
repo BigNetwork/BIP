@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101008153721) do
+ActiveRecord::Schema.define(:version => 20101021133119) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.string   "spotify_id"
+    t.integer  "released"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "artists", :force => true do |t|
+    t.string   "name"
+    t.string   "spotify_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "playlists", :force => true do |t|
     t.string   "name"

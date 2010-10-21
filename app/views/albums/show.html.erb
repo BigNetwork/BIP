@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @album.name %>
+</p>
+
+<p>
+  <b>Spotify:</b>
+  <%= @album.spotify_id %>
+</p>
+
+<p>
+  <b>Released:</b>
+  <%= @album.released %>
+</p>
+
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>
