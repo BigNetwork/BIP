@@ -62,7 +62,7 @@
 <% unless @playlist.tracks.empty? %>
 
 	
-	<table class="tracks">
+	<table class="tracks" id="playlist_tracks">
 		<thead>
 		<tr>
 			<th class="action votes">Röster</th>
@@ -72,6 +72,7 @@
 	<!--		<th>Href</th>-->
 <!--			<th>Popularitet</th>-->
 			<th>Längd</th>
+			<th class="action">Lyssna</th>
 	<!--
 			<th></th>
 			<th></th>
@@ -100,6 +101,7 @@
 				</td>
 -->
 				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
+                                <td class="action"><%= link_to image_tag("icon_spotify.png"), track.href %></td>
 	<!--
 				<td><%= link_to 'Show', track %></td>
 				<td><%= link_to 'Edit', edit_track_path(track) %></td>

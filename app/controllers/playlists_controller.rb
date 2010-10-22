@@ -7,6 +7,7 @@ class PlaylistsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @playlists }
+      format.json  { render :json => @playlists }
     end
   end
 

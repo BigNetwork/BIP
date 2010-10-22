@@ -35,7 +35,26 @@ $(function(){
 			"sSearch": "Sök:"
 		}
 	});
-
+/*
+	$("table#playlist_tracks").dataTable({
+		"aaSorting": [[ 0, "desc" ]],
+		"aoColumns": [ 
+		  { "sType": "number", "bSortable": false },
+		  { "sType": "html" },
+		  { "sType": "html" },
+		  { "sType": "html" },
+		  { "sType": "text", "bSortable": false }
+		],
+		"bPaginate": false,
+		"bLengthChange": false,
+		"bFilter": false,
+		"bInfo": false,
+		"bAutoWidth": false,
+		"oLanguage": {
+			"sSearch": "Sök:"
+		}
+	});
+*/
         $("form#spotify_search").submit(function(e){
             var query = $("form#spotify_search input#query").val();
             searchSpotify(query);
