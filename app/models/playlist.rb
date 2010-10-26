@@ -3,3 +3,15 @@ class Playlist < ActiveRecord::Base
   has_many :playlist_items
   #has_many :tracks, :through => :playlist_items
 end
+
+# == Schema Information
+#
+# Table name: playlists
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  is_playing :integer
+#
+

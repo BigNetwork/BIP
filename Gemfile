@@ -14,6 +14,7 @@ group :development do
   #gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'cucumber-rails'
 	gem 'capybara'
+	gem 'annotate'
 end
 
 group :test do

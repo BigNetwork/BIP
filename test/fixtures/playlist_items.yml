@@ -9,3 +9,17 @@ two:
   playlist_id: 1
   track_id: 1
   votes_count: 1
+
+# == Schema Information
+#
+# Table name: playlist_items
+#
+#  id          :integer         not null, primary key
+#  playlist_id :integer
+#  track_id    :integer
+#  votes_count :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  spotify_id  :string(255)
+#
+

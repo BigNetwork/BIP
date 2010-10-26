@@ -9,6 +9,10 @@ Musiken kommer från Spotify och på sikt hoppas vi kunna göra samma sak med Yo
 ### Install Ruby v1.9.2
 Proposed solution: with RVM:
 
+Install RVM from http://rvm.beginrescueend.com/
+
+Install Ruby version 1.9.2 with RVM:
+
     rvm install 1.9.2
     rvm 1.9.2
 
@@ -16,7 +20,7 @@ Proposed solution: with RVM:
     gem install bundler
 
 ### Clone this repository
-    git clone http://?????/BIP.git
+    git clone git://github.com/BigNetwork/BIP.git
 
 ### Make sure the gems needed for BIP are installed:
 In the folder that was created from the git clone, run this:

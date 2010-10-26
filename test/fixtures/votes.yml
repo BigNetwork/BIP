@@ -5,3 +5,14 @@ one:
 
 two:
   track_id: 1
+
+# == Schema Information
+#
+# Table name: votes
+#
+#  id         :integer         not null, primary key
+#  track_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

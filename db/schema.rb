@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021133854) do
+ActiveRecord::Schema.define(:version => 20101022082710) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20101021133854) do
     t.integer  "votes_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "spotify_id"
   end
 
   create_table "playlists", :force => true do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20101021133854) do
     t.datetime "updated_at"
     t.integer  "position"
     t.integer  "votes_count", :default => 0
+    t.string   "spotify_id"
   end
 
   create_table "votes", :force => true do |t|

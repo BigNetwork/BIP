@@ -17,3 +17,23 @@ two:
   popularity: 1.5
   length: 1.5
   playlist_id: 1
+
+# == Schema Information
+#
+# Table name: tracks
+#
+#  id          :integer         not null, primary key
+#  name        :string(255)
+#  artist      :string(255)
+#  album       :string(255)
+#  href        :string(255)
+#  popularity  :float
+#  length      :float
+#  playlist_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  position    :integer
+#  votes_count :integer         default(0)
+#  spotify_id  :string(255)
+#
+

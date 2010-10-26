@@ -29,6 +29,7 @@ GEM
       activesupport (= 3.0.0)
     activesupport (3.0.0)
     acts_as_list (0.1.2)
+    annotate (2.4.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
@@ -112,6 +113,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
+  annotate
   capybara
   cucumber-rails
   jquery-rails
