@@ -2,80 +2,24 @@
 <html>
 <head>
   <title>Bip</title>
+<!--
   <%= stylesheet_link_tag "bip.css" %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "application.js" %>
+-->
+  <%= stylesheet_link_tag "bip_jquerymobile.css" %>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js", "rails.js", "jquery.dataTables.min.js", "application.js" %>
+  <script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>  
   <%= csrf_meta_tag %>
 </head>
 <body>
-	<header>
-		<h1>
-			<a href="<%= root_path %>">
-				<span class="name">♪ BIP</span>
-				<span class="explanation">Bignetwork Internet Player</span>
-			</a>
-		</h1>
-		<!-- ♫  ♪ -->
-	</header>
-	<nav>
-		<ul>
-			<!--<li><%= link_to 'Användare', '#' %></li>-->
-			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
-			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') || !params[:playlist_id].blank? } %></li>
-		</ul>
-	</nav>
 	
-	<section id="page">
-
-
-<%=  %>	
-		
-		<section id="voting">
-			
-			<%= yield %>
-		
-		</section>
-	</section>
-	
-	<aside> 
-		<section id="updates"> 
-			<h3>Aktivitet:</h3> 
-			<ul id="activities"> 
-				<% unless @latest_votes.blank? %>
-					<% @latest_votes.each do |vote| %>
-					<li class="activity"> 
-						<span class="icon vote">❤</span> 
-						<%= link_to 'Någon', '#' %>
-						röstade på låten
-						<% unless vote.track.blank? %>
-							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote.track %>
-						<% end %>
-						<span class="timestamp"><%= time_ago_in_words vote.created_at %> sedan</span>
-					</li> 
-					<% end %>
-				<% end %>
-				<!--
-				<li class="activity"> 
-					<span class="icon add">+</span> 
-					<a href="#">MPV</a> la till låten <a href="#add" onclick="searchSpotify('Woman in Panic - Asdf')">Woman in Panic - Asdf</a> 
-					<span class="timestamp">för fem minuter sedan</span> 
-				</li>
-				-->
-			</ul> 
-		</section> 
-		<section id="about"> 
-			<h3>Vad är BIP?</h3> 
-			<p>I BIP kan man lägga upp och rösta på låtar man gillar. Låtarna med flest röster hamnar överst och spelas först.</p> 
-			<p>Musiken kommer från <a href="http://www.spotify.com/">Spotify</a> och på sikt hoppas vi kunna göra samma sak med YouTube-videor.</p> 
-		</section> 
-	</aside> 
-
-	<footer> 
-		BIP, Bignetwork Internet Player – en produktion av <a href="http://www.bignetwork.se/bst">Bignetwork Software Team</a> 
-	</footer>
+	<div data-role="page">
+		<%= yield %>
+	</div>
 	
 	<%= yield :javascript %>
-        <script type="text/javascript">
+	<script type="text/javascript">
 var disqus_shortname = 'bignetworkinternetplayer';
 (function () {
   var s = document.createElement('script'); s.async = true;

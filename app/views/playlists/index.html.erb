@@ -1,50 +1,29 @@
-<h1>❶ Välj spellista &nbsp; <br/>❷ Lägg till en låt <br/>❸ Rösta upp låtar du gillar</h1>
+<div data-role="header">
+	<h1>Välj spellista</h1>
+	<%= link_to 'Ny spellista', new_playlist_path, "data-icon" => "plus", "class" => "ui-btn-right" %>
+</div>
 
-<table class="playlists" id="all_playlists">
-	<thead>
-		<tr>
-			<th>Namn</th>
-			<th>Låtar</th>
-			<th>Uppspelning</th>
-			<th>Nästa låt</th>
-	<!--
-		<th></th>
-			<th></th>
-			<th></th>
-	-->
-		</tr>
-	</thead>
-	<tbody>
+<div data-role="content">
+
+	<ul data-role="listview">
+
 <% @playlists.each do |playlist| %>
-	<tr class="playlist">
-		<td><%= link_to playlist.name, playlist %></td>
-	<td>
-		<%= playlist.tracks.size %>
-	</td>
-	<td>
+	<li class="playlist">
+		<h3><%= link_to playlist.name, playlist %></h3>
+		<p><%= playlist.tracks.size %> låtar</p>
+		<!--
 		<% if playlist.is_playing? %>
 			Spelar just nu:
 		<% else %>
 			Pausad
 		<% end %>
-	</td>
-	<td>
 		<% unless playlist.tracks.blank? %>
 			<%= link_to "#{playlist.tracks.first.artist} - #{playlist.tracks.first.name}", playlist_track_path(playlist, playlist.tracks.first) %>
 		<% end %>
-	</td>
-<!--
-	<td><%= link_to 'Show', playlist %></td>
-		<td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-		<td><%= link_to 'Destroy', playlist, :confirm => 'Are you sure?', :method => :delete %></td>
--->
-	</tr>
-<% end %>	
+		-->
+	</li>
+<% end %>
 
-</tbody>
-</table>
+	</ul>
 
-<div class="table_adder">
-	<%= link_to '+', new_playlist_path, { :class => 'icon small add' } %>
-	<%= link_to 'Lägg till en spellista', new_playlist_path %>
 </div>

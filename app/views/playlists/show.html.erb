@@ -1,31 +1,12 @@
 <!--
-<nav>
-	<ul>
-		<% unless @playlist.nil? %>
-		<li><%= link_to 'Rösta', @playlist, { :class => 'current' } %></li>
-		<% end %>
-		<li><%= link_to 'Lägg till', new_playlist_track_path(@playlist) %></li>
-	</ul>
-</nav>
--->
-
-<!--
 <p id="notice"><%= notice %></p>
 -->
-
-<div id="playlist_tip">
-  <%= link_to '+ Lägg till en låt', new_playlist_track_path(@playlist), { :class => 'button add' } %> &nbsp; eller<br/> 
-  <span class="voting">Rösta på en låt du gillar &darr;</span>
+<div data-role="header">
+	<h1>Spellista: <%= @playlist.name %></h1>
+	<%= link_to 'Ny låt', new_playlist_track_path(@playlist), { "data-icon" => "plus", "class" => "ui-btn-right" } %>
 </div>
 
-<h1><%= @playlist.name %></h1>
-
-<p class="display_mode">
-  Visa: 
-  <%= link_to 'tabell', { :display => 'table'}, { :class => ('current' if params[:display] != 'list') } %>
-  
-  <%= link_to 'lista', { :display => 'list'}, { :class => ('current' if params[:display] == 'list') } %>
-</p>
+<div data-role="content">
 
 <!--
 
@@ -40,84 +21,20 @@
 
 -->
 
-<% if params[:display] == 'list' %>
-
-  <ul class="tracks">
+  <ul class="tracks" data-role="listview" data-filter="true" data-counttheme="a" data-splittheme="c">
   <% unless @playlist.tracks.empty? %>
     <% @playlist.tracks.each do |track| %>
       <li>
-        <a href="<%= playlist_track_path(@playlist, track) %>">
-        <%= image_tag(track.album_image_url || '', { :alt => "", :height => 126, :width => 126, :class => 'cover' } ) %>
-        <span class="artist"><%= track.artist %></span>
-        <span class="name"><%= track.name %></span>
-        </a>
-        <span class="votes"><%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %></span>
+		<%= image_tag(track.album_image_url || '', { :alt => "", :height => 126, :width => 126, :class => 'cover' } ) %>
+	    <h3><a href="<%= playlist_track_path(@playlist, track) %>">
+        	<%= track.name %>
+		</a></h3>
+        	<p class="name"><strong><%= track.artist %></strong></p>
+        	<p class="ui-li-count"><%= track.votes_count %><%#== 1 ? '1 röst' : "#{track.votes_count} röster" %> </p>
+        <%= link_to "Rösta", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, "data-icon" => "arrow-u"} %>
       </li>
     <% end %>
   <% end %>
   </ul>
 
-<% else # (if params[:display] == 'table' or params[:display].nil %>
-
-<% unless @playlist.tracks.empty? %>
-
-	
-	<table class="tracks" id="playlist_tracks">
-		<thead>
-		<tr>
-			<th class="action votes">Röster</th>
-			<th class="name">Namn</th>
-			<th class="artist">Artist</th>
-<!--			<th class="album">Album</th>-->
-	<!--		<th>Href</th>-->
-<!--			<th>Popularitet</th>-->
-			<th>Längd</th>
-			<th class="action">Lyssna</th>
-	<!--
-			<th></th>
-			<th></th>
-			<th></th>
-	-->
-		</tr>
-		</thead>
-		<tbody>
-		<% @playlist.tracks.each do |track| %>
-			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
-				<td class="action votes">
-					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
-				</td>
-			<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>
-				<td class="artist"><%= track.artist %></td>
-<!--				<td class="album"><%= track.album %></td>-->
-	<!--			<td><%= link_to track.href, track.href %></td>-->
-<!--				<td>
-					<% unless track.popularity.blank? %>
-					<% 
-						(0..(track.popularity*10).to_i).each do |p|
-							%>|<%
-						end 
-					end
-					%>
-				</td>
--->
-				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
-                                <td class="action"><%= link_to image_tag("icon_spotify.png"), track.href %></td>
-	<!--
-				<td><%= link_to 'Show', track %></td>
-				<td><%= link_to 'Edit', edit_track_path(track) %></td>
-				<td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
-	-->
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
-<% end %>	
-
-<!--
-<div class="table_adder">
-	<%= link_to '+', new_playlist_track_path(@playlist), { :class => 'icon small add' } %>
-	<%= link_to 'Lägg till en låt', new_playlist_track_path(@playlist) %>
 </div>
--->
-
-<% end %>

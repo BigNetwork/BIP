@@ -1,20 +1,21 @@
-<% unless @playlist.nil? %>
-<nav class="breadcrumbs">
-  <ul>
-    <li><%= link_to "← Tillbaka till " + @playlist.name, @playlist %></li>
-  </ul>
-</nav>
-<% end %>
+<div data-role="header">
+	<h1>Lägg till låt</h1>
+</div>
 
-<h1>Lägg till låt</h1>
+<div data-role="content">
+
+
+<h3>Välj låt genom:</h3>
+
+<div data-role="collapsible">
+	<h3>Sökning</h3>
 
 <form id="spotify_search" action="" method="get">
-<label for="query">Sök:</label>
 <input type="search" id="query" name="query" placeholder="Artist/låt/album" />
 <input type="submit" name="submit" value="Sök →" />
 </form>
 
-<table id="spotify_search_results">
+<table id="spotify_search_results" style="display: none;">
   <thead>
     <tr>
       <th class="add"></th>
@@ -32,6 +33,12 @@
 </table>
 
 <div id="spotify_search_status"></div>
+
+</div>
+
+<div data-role="collapsible" data-state="collapsed">
+	
+	<h3>Spotify URI</h3>
 
 <%= form_for(@track) do |f| %>
   <% if @track.errors.any? %>
@@ -63,3 +70,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>

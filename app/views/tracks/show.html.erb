@@ -1,10 +1,6 @@
-<% unless @playlist.nil? %>
-<nav class="breadcrumbs">
-  <ul>
-    <li><%= link_to "← Tillbaka till " + @playlist.name, @playlist %></li>
-  </ul>
-</nav>
-<% end %>
+<div data-role="header">
+	<h1><%= @track.artist %> - <%= @track.name %></h1>
+</div>
 
 <p id="notice"><%= notice %></p>
 
@@ -12,22 +8,23 @@
 <img src="<%= @track.album_image_url %>" class="artist_cover" />
 <% end %>
 
-<h2><%= @track.artist %></h2>
-<h1><%= @track.name %></h1>
-
-<div class="album">
-  <%= @track.album %>
-</div>
+<table>
+	<tr>
+		<th>Artist:</td>
+		<td><%= @track.artist %></td>
+	</tr>
+	<tr>
+		<th>Låt:</td>
+		<td><%= @track.name %></td>
+	</tr>
+	<tr>
+		<th>Album:</td>
+		<td><%= @track.album %></td>
+	</tr>
+</table>
 
 <p>
-&nbsp;
-<!--
-  <%= @track.length_in_minutes.to_s.gsub("\.", ":") %>
--->
-</p>
-
-<p>
-  <%= link_to image_tag("icon_spotify.png") + " Lyssna", @track.href, { :class => 'button listen' } %>
+  <%= link_to "Lyssna på i Spotify", @track.href, { "data-role" => "button", "data-icon" => 'listen' } %>
 </p>
 
 <div id="disqus_thread"></div>
@@ -42,8 +39,6 @@
   })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=bignetworkinternetplayer">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
 
 <!--
 <h3>Finns i dessa spellistor:</h3>
