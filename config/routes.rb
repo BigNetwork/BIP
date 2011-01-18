@@ -20,6 +20,10 @@ Bip::Application.routes.draw do
     resources :items, :controller => :playlist_items
   end
   
+  # TODO: Swap for playlist_items:
+  match "/playlists/:playlist_id/tracks/:id/play" => "tracks#play"
+  match "/playlists/:id/play" => "playlists#play"
+  
   resources :playlist_items
 
   # The priority is based upon order of creation:

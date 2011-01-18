@@ -129,4 +129,19 @@ class TracksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def play
+    @track = Track.find(params[:id])
+    if @track
+      # Increment amount of plays
+      #@track.??? = @track.??? + 1
+      
+      # Reset number of votes
+      #@track.total_votes_count = @track.votes_count
+      #@track.votes_count = 0
+      
+      # Respond with XML format:
+      redirect_to(track_path(@track, :format => :xml))
+    end
+  end
 end

@@ -81,4 +81,18 @@ class PlaylistsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def play
+    @playlist = Playlist.find(params[:id])
+    
+    # TODO: Replace TRACK with PLAYLIST_ITEM
+    
+    if @playlist && @playlist.tracks
+      # Find the first track
+      @track = @playlist.tracks.first
+      
+      # Redirect to track
+      redirect_to("/playlists/#{@playlist.id}/tracks/#{@track.id}/play")
+    end
+  end
 end
