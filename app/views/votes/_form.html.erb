@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :track_id %><br />
-    <%= f.text_field :track_id %>
+    <%= f.label :playlist_item_id %><br />
+    <%= f.collection_select :playlist_item_id, PlaylistItem.all, :id, :id %>
   </div>
   <div class="actions">
     <%= f.submit %>

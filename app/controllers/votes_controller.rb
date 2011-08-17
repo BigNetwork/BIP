@@ -44,7 +44,13 @@ class VotesController < ApplicationController
     
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to(:back) } #, :notice => 'Vote was successfully created.') }
+        format.html { 
+          if @vote.playlist 
+            redirect_to playlist_path(@playlist, :highlight_item_id => @vote.playlist_id)
+          else
+            redirect_to :back 
+          end
+        } #, :notice => 'Vote was successfully created.') }
         format.xml  { render :xml => @vote, :status => :created, :location => @vote }
       else
         format.html { render :action => "new" }

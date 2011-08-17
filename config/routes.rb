@@ -1,5 +1,7 @@
 Bip::Application.routes.draw do
 
+  resources :plays
+
   resources :artists do
     resources :tracks
   end
@@ -16,15 +18,22 @@ Bip::Application.routes.draw do
   end
 
   resources :playlists do
-    resources :tracks
-    resources :items, :controller => :playlist_items
+    #resources :tracks
+    resources :tracks, :controller => :playlist_items do
+      resources :plays
+    end
   end
   
   # TODO: Swap for playlist_items:
-  match "/playlists/:playlist_id/tracks/:id/play" => "tracks#play"
-  match "/playlists/:id/play" => "playlists#play"
+  match "/playlists/:playlist_id/tracks/:id/play(.:format)" => "playlist_items#play"
+  match "/playlists/:id/play(.:format)" => "playlists#play"
+  match "/playlists/:id/next(.:format)" => "playlists#next"
+  match "/playlists/:id/pause" => "playlists#pause"
+  
+  match "/search(.:format)" => "Search#index"
   
   resources :playlist_items
+  #resources :items, :controller => :playlist_items
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

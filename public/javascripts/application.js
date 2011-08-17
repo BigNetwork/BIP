@@ -19,6 +19,23 @@ $(function(){
 		}
 	});
 	
+	$("table#playlist_tracks").dataTable({
+		//"aaSorting": [[],[ 1, "desc" ], [ 0, "asc" ]],
+		//"aoColumns": [ 
+		//			{ "sType": "html" },
+		//			{ "sType": "text" },
+		//			{ "sType": "text" }
+		//],
+		"bPaginate": false,
+		"bLengthChange": false,
+		"bFilter": false,
+		"bInfo": false,
+		"bAutoWidth": false,
+		"oLanguage": {
+			"sSearch": "Sök:"
+		}
+	});
+	
 	$("table#all_playlists").dataTable({
 		//"aaSorting": [[],[ 1, "desc" ], [ 0, "asc" ]],
 		//"aoColumns": [ 
@@ -69,7 +86,65 @@ $(function(){
            location.reload();
         });
 
+		// Add tooltips to all links with the TOOLTIP class:
+		$('a.tooltip').tipsy({
+			gravity: 's',
+			html: true
+		});
+
+		$("#share_playlist a.share_link").click(function(e){
+			$(this).toggleClass('active');
+			$("#share_playlist #share_playlist_options").toggle();
+			e.preventDefault();
+		});
+		
+		$("a#add_playlist_item").click(function(e){
+			$("#playlist_add").toggle();
+			$(this).toggleClass('active');
+			e.preventDefault();
+		});
+		
+		$("a.popup_enabler#admin_settings_link").click(function(e){
+			$("#admin_settings").toggle();
+			$(this).toggleClass('active');
+			e.preventDefault();
+		});
+		
+		// Close popups when close button clicked:
+		$(".popup a.close").click(function(e){
+			hidePopups();
+			e.preventDefault();
+		});
+		
+		// START
+		// Hide popups when you click outside them:
+		$('body').click(function() {
+		 	// Hide the popups if visible
+			hidePopups();
+		 });
+		
+		$(".popup").click(function(e){
+			e.stopPropagation();
+		});
+		
+		$(".popup_enabler").click(function(e){
+			e.stopPropagation();
+		});
+		// END
+
 });
+
+$(document).keyup(function(e){
+	if(e.which == 27){
+		hidePopups();
+	}
+});
+
+// Hide all "popups":
+function hidePopups(){
+	$(".popup").hide();
+	$(".popup_enabler").removeClass("active");
+}
 
 function searchSpotify(query){
 	// Tell the user what is happening:

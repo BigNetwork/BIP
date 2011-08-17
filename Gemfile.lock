@@ -59,6 +59,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
       trollop (~> 1.16.2)
+    hpricot (0.8.3)
     httparty (0.6.1)
       crack (= 0.1.8)
     i18n (0.4.1)
@@ -96,6 +97,9 @@ GEM
       thor (~> 0.14.0)
     rake (0.8.7)
     rubyzip (0.9.4)
+    scrobbler (0.2.3)
+      activesupport (>= 1.4.2)
+      hpricot (>= 0.4.86)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
       json_pure
@@ -119,4 +123,5 @@ DEPENDENCIES
   jquery-rails
   meta-spotify
   rails (= 3.0.0)
+  scrobbler
   sqlite3-ruby

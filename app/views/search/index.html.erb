@@ -1,0 +1,54 @@
+<% if @query %>
+
+	<h1>
+		Söker efter <em><%= h @query %></em>
+		<%= link_to "Öppna samma sökning i Spotify", "spotify:search:#{h @query}", { :class => 'open_in_spotify tooltip', :title => 'Öppna samma sökning i Spotify'} %>
+	</h1>
+
+<% else %>
+	
+	<h1>Sök:</h1>
+	
+<% end %>
+	
+	<form action="/search" method="get">
+<!--
+		<label for="q">Låt, artist eller album:</label><br/>
+-->
+		<input type="search" name="q" placeholder="Låt/artist/album" value="<%= @query if @query %>">
+		<% if @playlist %>
+		<input type="hidden" name="playlist_id" value="<%= @playlist.id %>">
+		<% end %>
+	</form>
+	
+<% if @query %>
+	
+	<% if @tracks %>
+		<table>
+			<thead>
+				<tr>
+					<th>Låt:</th>
+					<th>Artist:</th>
+					<th>Album:</th>
+					<th>Lägg till i spellista:</th>
+					<th><%= image_tag 'icon_spotify.png' %></th>
+				</tr>
+			</thead>
+			<tbody class="tracks">
+				<% @tracks.each do |track| %>
+					<% unless track.blank? %>
+						<%= render :partial => 'track', :locals => {:track => track, :playlist => @playlist, :playlist_item => @playlist_item} %>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+	
+		<p>
+			Ett fel uppstod:
+			<strong><%= @error %></strong>.
+		</p>
+	
+	<% end %>
+	
+<% end %>

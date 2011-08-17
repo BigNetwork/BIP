@@ -86,13 +86,41 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     
     # TODO: Replace TRACK with PLAYLIST_ITEM
+    # TODO: TEST MOAR!
     
-    if @playlist && @playlist.tracks
-      # Find the first track
-      @track = @playlist.tracks.first
+    if @playlist && @playlist.playlist_items
       
+      # Mark the playlist as playing:
+      @playlist.is_playing = true
+      @playlist.save!
+      
+      # Find the first track
+      @playlist_item = @playlist.playlist_items.first
+      
+      respond_to do |format|
+        format.html { redirect_to("/playlists/#{@playlist.id}/tracks/#{@playlist_item.id}/play") }
+        format.xml  { redirect_to("/playlists/#{@playlist.id}/tracks/#{@playlist_item.id}/play.xml") }
+      end
       # Redirect to track
-      redirect_to("/playlists/#{@playlist.id}/tracks/#{@track.id}/play")
+      
     end
   end
+  
+  def pause
+    # 
+    @playlist = Playlist.find(params[:id])
+    if @playlist
+      @playlist.is_playing = false
+      @playlist.save!
+    end
+    
+    redirect_to :back
+    
+    # TODO: Connect to the playback server and pause it as well!
+  end
+
+  def next
+    play
+  end
+  
 end

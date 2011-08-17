@@ -1,23 +1,29 @@
-<h1>Listing votes</h1>
+<h1>Alla röster</h1>
 
 <table>
+	<thead>
   <tr>
-    <th>Track</th>
-    <th></th>
-    <th></th>
-    <th></th>
+		<th>Röstare</th>
+    <th>Låt</th>
+    <th>I spellista</th>
   </tr>
+	</thead>
 
+<tbody>
 <% @votes.each do |vote| %>
   <tr>
-    <td><%= vote.track_id %></td>
-    <td><%= link_to 'Show', vote %></td>
-    <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
-    <td><%= link_to 'Destroy', vote, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td>Någon</td>
+    <td>
+			<% if vote.playlist_item && vote.playlist_item.track %>
+				<%= link_to "#{vote.playlist_item.track.artist} - #{vote.playlist_item.track.name}", vote.playlist_item %>
+			<% end %>
+		</td>
+		<td>
+			<% if vote.playlist_item && vote.playlist_item.playlist %>
+				<%= link_to vote.playlist_item.playlist.name, vote.playlist_item.playlist %>
+			<% end %>
+		</td>
   </tr>
 <% end %>
+</tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Vote', new_vote_path %>

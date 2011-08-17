@@ -8,8 +8,8 @@
 
 <p id="notice"><%= notice %></p>
 
-<% unless @track.album_image_url.blank? %>
-<img src="<%= @track.album_image_url %>" class="artist_cover" />
+<% unless @track.cover_url.blank? %>
+	<img src="<%= @track.cover_url %>" class="artist_cover" />
 <% end %>
 
 <h2><%= @track.artist %></h2>

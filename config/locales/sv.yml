@@ -161,15 +161,24 @@
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     attributes:
       track:
-        name: "namn"
-        popularity: "popularitet"
-        votes_count: "röster"
+        name: "Namn"
+        artist: "Artist"
+        album: "Album"
+        popularity: "Popularitet"
+        votes_count: "Röster"
+        length: "Längd"
+        playlist_id: "Spellista"
+        href: "Spotify-URI"
       playlist_item:
-        votes_count: "röster"
+        votes_count: "Röster"
       album:
-        name: "namn"
+        name: "Namn"
       artist:
-        name: "namn"
+        name: "Namn"
+      playlist_item:
+        track_id: "Låt"
+      vote:
+        playlist_item_id: "Spellista"
       # For example,
       #   user:
       #     login: "Handle"

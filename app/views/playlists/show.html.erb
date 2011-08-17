@@ -1,57 +1,131 @@
 <!--
-<nav>
-	<ul>
-		<% unless @playlist.nil? %>
-		<li><%= link_to 'Rösta', @playlist, { :class => 'current' } %></li>
-		<% end %>
-		<li><%= link_to 'Lägg till', new_playlist_track_path(@playlist) %></li>
-	</ul>
-</nav>
--->
-
-<!--
 <p id="notice"><%= notice %></p>
 -->
 
-<div id="playlist_tip">
-  <%= link_to '+ Lägg till en låt', new_playlist_track_path(@playlist), { :class => 'button add' } %> &nbsp; eller<br/> 
-  <span class="voting">Rösta på en låt du gillar &darr;</span>
+<% if @playlist.is_playing? %>
+<div class="now_playing">
+	<% unless @playlist.playlist_items.blank? %>
+		<a href="<%= playlist_item_path(@playlist.playlist_items.first) %>">
+		<span class="cover">
+			<span class="overlay"></span>
+			<%= image_tag @playlist.playlist_items.first.track.cover_url || 'cover_unknown.png' %>
+		</span>
+		</a>
+		<span class="name">
+			<%= link_to image_tag("icon_spotify.png"), @playlist.playlist_items.first.track.href, :class => 'spotify' %>
+			<%= link_to @playlist.playlist_items.first.track.name, @playlist.playlist_items.first %>
+		</span>
+		<span class="artist"><%= @playlist.playlist_items.first.track.artist %></span>
+		<span class="votes"><span class="count"><%= @playlist.playlist_items.first.votes_count %></span> röster</span>
+		<span class="duration">
+			<span class="current">~ 1:05</span>
+			<span class="progressbar">
+				<span class="current" style="width: 35%;"></span>
+			</span>
+			<span class="total"><%= @playlist.playlist_items.first.track.length_in_minutes.to_s.gsub("\.", ":") %></span>
+		</span>
+	<% end %>
+</div>
+<% end %>
+
+<h1>
+	<%= @playlist.name %>
+	<div id="share_playlist">
+		<a href="<%= request.fullpath %>" title="Dela spellistan" class="share_link popup_enabler tooltip"><%= image_tag 'icons-sencha/action.png' %></a>
+		<div id="share_playlist_options" style="display: none;" class="popup">
+			<%= link_to 'x', '', :class => 'close' %>
+			<p>Kommer snart...</p>
+			<p>
+				Dela via:<br/>
+				[F] Facebook<br/>
+				[E] Epost<br/>
+				[T] Twitter<br/>
+				[U] URL<br/>
+			</p>
+			<p>
+				Skicka denna adressen till vänner:<br/>
+				<input type="text" value="<%= playlist_url @playlist %>" />
+			</p>
+			<p>
+				<!-- Inspired by: http://spotibot.com/playlist/ -->
+				Dra och släpp denna ikon till en ny Spotify-spellista:
+				<div style="background: url('/images/icon_spotify.png') center center no-repeat; cursor: pointer; display: inline-block; height: 24px; overflow: hidden; width: 24px;">
+					<div style="display: inline-block; height: 100%; opacity: 0; width: 100%">
+						<% @playlist.playlist_items.each do |playlist_item| %><%= playlist_item.spotify_id %><% end %>
+					</div>
+				</div><br/>
+				Eller kopiera denna text och klistra in i en ny Spotify-spellista:<br/>
+				<textarea rows="<%= @playlist.playlist_items.count %>" cols="35">
+				<% @playlist.playlist_items.each do |playlist_item| %>
+<%= playlist_item.spotify_id %>
+<% end %></textarea>
+			</p>
+		</div>
+	</div>
+</h1>
+
+<%= link_to 'Admin-inställningar', "#", {:class => 'tooltip popup_enabler', :id => 'admin_settings_link', :title => 'Admin-inställningar'} %>
+
+<div id="admin_settings" class="popup" style="display: none;">
+	<p>Playback-kod: ASDaeqweq23</p>
+	
+	<span class="playback_controls">
+		<%= link_to "Föregående", "#", { :title => 'Endast för ADMIN', :class => 'tooltip previous' }  %>
+		<% if @playlist.is_playing? %>
+			<%= link_to "Pausa", "/playlists/#{@playlist.id}/pause", { :title => 'Endast för ADMIN', :class => 'tooltip pause' }  %>
+		<% else %>
+			<%= link_to "Spela upp", "/playlists/#{@playlist.id}/play", { :title => 'Endast för ADMIN', :class => 'tooltip play' }  %>
+		<% end %>
+		<%= link_to "Nästa", "/playlists/#{@playlist.id}/next", { :title => 'Endast för ADMIN', :class => 'tooltip next' } %>
+	</span>
 </div>
 
-<h1><%= @playlist.name %></h1>
-
 <p class="display_mode">
-  Visa: 
+  <%= image_tag 'icons-glyphish/12-eye.png', :class => 'show_as' %> Visa som 
   <%= link_to 'tabell', { :display => 'table'}, { :class => ('current' if params[:display] != 'list') } %>
-  
-  <%= link_to 'lista', { :display => 'list'}, { :class => ('current' if params[:display] == 'list') } %>
+  <%= link_to 'lista',  { :display => 'list'},  { :class => ('current' if params[:display] == 'list') } %>
 </p>
 
-<!--
-
-<p>
-	Status: 
-	<% if @playlist.is_playing? %>
-	▶ Spelar
-	<% else %>
-	Pausad
-	<% end %>
-</p>
-
--->
+<div id="playlist_tip">
+	<form method="get" action="/search">
+		<input type="hidden" name="playlist_id" value="<%= @playlist.id %>" />
+		<label for="add_playlist_search_q">Lägg till låt:</label>
+		<input name="q" id="add_playlist_search_q" type="search" placeholder="Artist/album/låt" value="<%= h params[:q] %>" />
+	</form>
+  <%= link_to '+ Lägg till en låt', "/search?playlist_id=#{@playlist.id}", { :class => 'button add popup_enabler', :id => 'add_playlist_item' } %>
+	<div id="playlist_add" style="<%= 'display: none;' if params[:q].blank? %>" class="popup">
+		<%= link_to 'x', '', :class => 'close' %>
+		<form>
+			<label for="add_playlist_search_q">Sök efter:</label>
+			<input name="q" id="add_playlist_search_q" type="search" placeholder="Artist/album/låt" value="<%= h params[:q] %>" />
+		</form>
+	</div>
+	<!--
+ 	&nbsp; eller<br/> 
+  <span class="voting">Rösta på en låt du gillar &darr;</span>
+	-->
+</div>
 
 <% if params[:display] == 'list' %>
 
   <ul class="tracks">
-  <% unless @playlist.tracks.empty? %>
-    <% @playlist.tracks.each do |track| %>
+  <% if @playlist.playlist_items.empty? %>
+		Inga låtar.
+	<% else %>
+    <% @playlist.playlist_items.each do |playlist_item| %>
       <li>
-        <a href="<%= playlist_track_path(@playlist, track) %>">
-        <%= image_tag(track.album_image_url || '', { :alt => "", :height => 126, :width => 126, :class => 'cover' } ) %>
-        <span class="artist"><%= track.artist %></span>
-        <span class="name"><%= track.name %></span>
+					<span class="cover" style="background-image: url('<%#= playlist_item.track.cover_url %>');">
+						<span class="overlay"></span>
+						<a href="<%= playlist_track_path(@playlist, playlist_item) %>">
+						<%= image_tag playlist_item.track.cover_url || 'cover_unknown.png' %>
+						</a>
+					</span>
+        	<%#= image_tag(playlist_item.track.cover_url || '', { :alt => "", :height => 126, :width => 126, :class => 'cover' } ) %>
+				<a href="<%= playlist_track_path(@playlist, playlist_item) %>">
+	      	<span class="name"><%= playlist_item.track.name %></span>
+        	<span class="artist"><%= playlist_item.track.artist %></span>
         </a>
-        <span class="votes"><%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %></span>
+        <span class="votes"><%= link_to "#{playlist_item.votes_count.to_i} ❤", votes_path("[vote][playlist_item_id]" => playlist_item.id), { :remote => true, :method => :post, :class => 'icon vote tooltip', :title => 'Rösta'} %></span>
       </li>
     <% end %>
   <% end %>
@@ -59,54 +133,62 @@
 
 <% else # (if params[:display] == 'table' or params[:display].nil %>
 
-<% unless @playlist.tracks.empty? %>
-
+<% if @playlist.playlist_items.empty? %>
+	Inga låtar.
+<% else %>
 	
 	<table class="tracks" id="playlist_tracks">
 		<thead>
 		<tr>
-			<th class="action votes">Röster</th>
+			<th></th>
 			<th class="name">Namn</th>
 			<th class="artist">Artist</th>
 <!--			<th class="album">Album</th>-->
 	<!--		<th>Href</th>-->
 <!--			<th>Popularitet</th>-->
 			<th>Längd</th>
-			<th class="action">Lyssna</th>
-	<!--
+			<th class="action votes" colspan="2">Röster</th>
 			<th></th>
-			<th></th>
-			<th></th>
-	-->
 		</tr>
 		</thead>
 		<tbody>
-		<% @playlist.tracks.each do |track| %>
-			<tr class="track<%= ' highlight' if track.id == params[:highlight_track_id].to_i %>">
-				<td class="action votes">
-					<%= link_to "#{track.votes_count} ❤", votes_path("[vote][track_id]" => track.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
+		<% @playlist.playlist_items.each do |playlist_item| %>
+			<tr class="track<%= ' highlight' if playlist_item.track.id == params[:highlight_item_id].to_i %>">
+				<td class="cover">
+					<a href="<%= playlist_item_path(playlist_item) %>">
+						<span class="overlay"></span>
+						<%= image_tag playlist_item.track.cover_url || 'cover_unknown.png' %>
+					</a>
 				</td>
-			<td class="name"><%= link_to track.name, playlist_track_path(@playlist, track) %></td>
-				<td class="artist"><%= track.artist %></td>
-<!--				<td class="album"><%= track.album %></td>-->
-	<!--			<td><%= link_to track.href, track.href %></td>-->
+				<td class="name">
+					<% if playlist_item.track %>
+						<%= link_to playlist_item.track.name, playlist_track_path(@playlist, playlist_item) %>
+					<% else %>
+						?
+					<% end %>
+				</td>
+				<td class="artist"><%= playlist_item.track.artist %></td>
+<!--				<td class="album"><%= playlist_item.track.album %></td>-->
+	<!--			<td><%= link_to playlist_item.track.href, playlist_item.track.href %></td>-->
 <!--				<td>
-					<% unless track.popularity.blank? %>
+					<% unless playlist_item.track.popularity.blank? %>
 					<% 
-						(0..(track.popularity*10).to_i).each do |p|
+						(0..(playlist_item.track.popularity*10).to_i).each do |p|
 							%>|<%
 						end 
 					end
 					%>
 				</td>
 -->
-				<td><%= track.length_in_minutes.to_s.gsub("\.", ":") %></td>
-                                <td class="action"><%= link_to image_tag("icon_spotify.png"), track.href %></td>
-	<!--
-				<td><%= link_to 'Show', track %></td>
-				<td><%= link_to 'Edit', edit_track_path(track) %></td>
-				<td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
-	-->
+				<td><%= playlist_item.track.length_in_minutes.to_s.gsub("\.", ":") %></td>
+				<td class="action votes">
+					<%= playlist_item.votes_count.to_i %>
+				</td>
+				<td class="action vote">
+					<%= link_to "+", votes_path("[vote][playlist_item_id]" => playlist_item.id), { :remote => true, :method => :post, :class => 'icon vote tooltip', :title => 'Rösta'} %>
+					<%#= link_to "+ ❤", votes_path("[vote][playlist_item_id]" => playlist_item.id), { :remote => true, :method => :post, :class => 'icon vote', :title => 'Rösta'} %>
+				</td>
+				<td class="share"><%= link_to image_tag('icons-sencha/action.png'), playlist_item.track.href, {:title => 'Öppna i Spotify', :class => 'tooltip' } %></td>
 			</tr>
 		<% end %>
 		</tbody>

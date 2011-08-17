@@ -1,0 +1,23 @@
+<h1>Listing plays</h1>
+
+<table>
+  <tr>
+    <th>Playlist item</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @plays.each do |play| %>
+  <tr>
+    <td><%= play.playlist_item_id %></td>
+    <td><%= link_to 'Show', play %></td>
+    <td><%= link_to 'Edit', edit_play_path(play) %></td>
+    <td><%= link_to 'Destroy', play, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Play', new_play_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118150401) do
+ActiveRecord::Schema.define(:version => 20110126154735) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110118150401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "spotify_id"
+    t.integer  "previous_votes_count", :default => 0
   end
 
   create_table "playlists", :force => true do |t|
@@ -41,6 +42,12 @@ ActiveRecord::Schema.define(:version => 20110118150401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "is_playing"
+  end
+
+  create_table "plays", :force => true do |t|
+    t.integer  "playlist_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tracks", :force => true do |t|
@@ -57,12 +64,14 @@ ActiveRecord::Schema.define(:version => 20110118150401) do
     t.integer  "votes_count",       :default => 0
     t.string   "spotify_id"
     t.integer  "total_votes_count"
+    t.string   "cover_url"
   end
 
   create_table "votes", :force => true do |t|
     t.integer  "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "playlist_item_id"
   end
 
 end

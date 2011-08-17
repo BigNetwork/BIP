@@ -7,7 +7,7 @@ html{
 }
 
 body{
-    background: url('/images/tile.gif');
+    background: #333 url('/images/tile_dark.png');
     font-family: sans-serif;
 }
 
@@ -37,7 +37,7 @@ header{
 header h1{
     margin-bottom: -0.5em;
     padding-left: 0.0em;
-    text-shadow: 1px 1px 0 #fff;
+    text-shadow: 1px 1px 0 #000;
 }
 
 header a{
@@ -77,6 +77,47 @@ body>nav{
     clear: both;
     margin: 0 auto;
     max-width: 800px;
+    position: relative;
+    top: -1.5em;
+}
+
+body>nav>ul{
+    margin: 0;
+    padding: 0;
+}
+
+body>nav>ul>li{
+    display: inline;
+    float: right;
+    list-style-type: none;
+}
+
+body>nav>ul>li>a{
+    background: ;
+    border-radius: 0.5em;
+    color: #999;
+    font-size: 95%;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+    text-shadow: 0px 1px 0 #222;
+    margin: 1px;
+}
+
+body>nav>ul>li>a.current{
+    background: #292929;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid #292929;
+    border-top: 1px solid #111;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0px 1px 0 #000;
+}
+
+/*
+body>nav{
+    clear: both;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 body>nav>ul{
@@ -111,6 +152,7 @@ body>nav>ul>li>a.current{
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
 }
+*/
 
 /*
 body>section{
@@ -121,10 +163,12 @@ body>section{
 section#page{
     -webkit-box-shadow: rgba(0, 0, 0, 0.296094) 2px 2px 5px;
     background: #fff;
-    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.05);
+    /*border: 1px solid #ccc;*/
     -moz-border-radius: 0.5em;
     clear: both;
     border-radius: 0.5em;
+    color: #fff;
     display: block;
     margin: 0 auto;
     max-width: 800px;
@@ -157,7 +201,7 @@ section#page nav li{
 section#page nav a{
     -moz-border-radius: 0.4em;
     border-radius: 0.4em;
-    color: #333;
+    color: #ccc;
     display: inline-block;
     font-weight: normal;
 /*    margin: 1.3em 0.5em 1.3em 0;*/
@@ -169,6 +213,7 @@ section#page nav a{
 
 section#page nav a:hover{
     background: #eee;
+    color: #000;
 }
 
 section#page nav a.current{
@@ -206,20 +251,66 @@ section#page h2{
     padding: 1em 1.5em;
 }
 
+a.popup_enabler#admin_settings_link{
+    background: url('/images/icons-glyphish/19-gear.png') center center no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    height: 24px;
+    opacity: 0.3;
+    text-indent: -6000px;
+    width: 24px;
+}
+a.popup_enabler#admin_settings_link:hover{
+    opacity: 1;
+}
+
+#admin_settings{
+    
+}
+
+/*
+    SEARCH PAGE:
+*/
+
+#page.search.index h1 a.open_in_spotify{
+    /*float: right;*/
+    margin-left: 0.4em;
+}
+
+a.open_in_spotify{
+    background-image: url('/images/icons-sencha/action.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    height: 20px;
+    opacity: 0.2;
+    text-indent: -6000px;
+    width: 20px;
+}
+a.open_in_spotify:hover{
+    opacity: 1;
+}
+
 table{
     border-spacing: 0;
+	clear: both;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
 thead th{
-    border-bottom: 1px solid #ccc;
-    color: #666;
+/*    border-bottom: 1px solid #ccc;*/
+    border-right: 1px solid #333;
+    color: #999;
     font-size: 0.8em;
     font-weight: normal;
     padding: 0.3em 0.8em;
     text-align: left;
+}
+
+thead th:last-child{
+    border-right: none;
 }
 
 table tr:last-child td:first-child{
@@ -231,7 +322,7 @@ table tr:last-child td:last-child{
 }
 
 .tracks thead .artist, .tracks thead .name{
-    border-right: 1px solid #eee;
+    border-right: 1px solid #333;
 }
 
 .track.highlight td{
@@ -244,8 +335,73 @@ table tr:last-child td:last-child{
     text-shadow: 1px 1px 0 green;
 }
 
-.track.current td a{
+table .track .name{
+    line-height: 1.6em;
+    width: 40%;
+}
+
+table .track .name a.spotify{
+    display: none;
+    margin-left: 0.3em;
+}
+
+table .track .name a.spotify img{
+    border: none;
+    vertical-align: -0.3em;
+}
+
+table .track:hover a.spotify{
+    display: inline;
+}
+
+table .track .cover{
+    border: none;
+    height: 48px;
+    padding: 0;
+    position: relative;
+    width: 48px;
+}
+
+table .track .cover a{
+    display: block;
+}
+
+table .track .cover .overlay{
+    background: transparent url("/images/cover_overlay.png") top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    display:block;
+    height:100%;
+    left:0;
+    position:absolute;
+    top:0;
+    width:100%;
+    z-index: 1;
+}
+
+table .track .cover img{
+    height: 100%;
+    width: 100%;
+}
+
+table .track.current td a{
     color: #fff;
+}
+table .track .share{
+    text-align: right;
+    width: 1.5em;
+}
+table .track .share img{
+    opacity: 0.3;
+    width: 100%;
+}
+table .track .share a{
+    display: block;
+}
+table .track .share a:hover img{
+    opacity: 1;
 }
 /*
 .track.current .action.vote .icon{
@@ -263,6 +419,7 @@ td a:hover{
 
 td{
     background: #F6F6F6;
+    background: url('/images/tile.gif');
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
     color: #333;
@@ -281,9 +438,6 @@ tr:hover td{
 
 .track .artist{
     min-width: 10em;
-}
-
-.track .title{
 }
 
 .track .album{
@@ -305,14 +459,14 @@ tr:hover td{
 }
 
 .track .action a{
-    display: block;
+    display: inline-block;
     opacity: 0.5;
     text-align: center;
 }
 
-.track .action.vote{
+.track .action.votes{
     text-align: right;
-    width: 3.2em;
+    width: 2em;
 }
 
 .track .votecount{
@@ -350,11 +504,12 @@ th.sorting{
 }
 
 .table_adder{
-    background: #F6F6F6;
+/*    background: #F6F6F6;
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
     border-bottom-left-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
+*/
     margin: -1em -1.5em;
     margin-top: 1em;
     padding: 0.5em 0.7em;
@@ -370,14 +525,20 @@ th.sorting{
     text-decoration: underline;
 }
 
+.table_adder .icon{
+    border: 1px solid #000;
+    border-top-color: lightgreen;
+    border-left-color: lightgreen;
+}
+
 .icon{
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
     -moz-background-size: 60%;
     border: 1px solid #aaa;
-    border-left: 1px solid #fff;
-    border-top: 1px solid #fff;
+    border-left-color: #fff;
+    border-top-color: #fff;
     -moz-border-radius: 4px;
     border-radius: 4px;
     color: #fff !important;
@@ -492,14 +653,236 @@ table.playlists td:first-child {
     font-weight: bold;
 }
 
+.now_playing{
+    display: block;
+    float: right;
+    overflow: hidden;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    min-height: 70px;
+    text-align: right;
+    text-shadow: 0px 1px 1px black;
+    width: 50%;
+}
+.now_playing .cover{
+    background: #ccc;
+/*    -webkit-box-shadow: rgba(50, 50, 50, 0.496094) 1px 2px 2px;*/
+    float: right;
+    height: 100px;
+    margin-left: 1em;
+    position: relative;
+    width: 100px;
+}
+/*
+    Inspiration: http://brunolazzaro.com.ar/test/audioPlayer/
+*/
+.now_playing .cover .overlay{
+    background: transparent url("/images/cover_overlay.png") top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    display:block;
+    height:100%;
+    left:0;
+    position:absolute;
+    top:0;
+    width:100%;
+    z-index: 1;
+}
+.now_playing .cover img{
+    border: none;
+    -webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.7);
+    -moz-box-shadow:0px 1px 4px rgba(0,0,0,0.7);
+    box-shadow:0px 1px 4px rgba(0,0,0,0.7);
+    height: 100%;
+    width: 100%;
+}
+.now_playing .name{
+    display: block;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.now_playing .name a{
+    color: #fff;
+    text-decoration: none;
+}
+.now_playing .name a:hover{
+    text-decoration: underline;
+}
+.now_playing .name a.spotify{
+    display: none;
+    margin-right: 0.3em;
+    opacity: 0.5;
+}
+.now_playing .name a.spotify img{
+    vertical-align: -0.2em;
+}
+.now_playing:hover .name a.spotify{
+    display: inline;
+}
+.now_playing .name a.spotify:hover{
+    opacity: 1;
+}
+.now_playing .artist{
+    color: #999;
+    display: block;
+    font-size: 80%;
+    font-weight: bold;
+    margin-top: 0.5em;
+/*    text-shadow: ;*/
+}
+.now_playing .votes{
+    color: #999;
+    display: none;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+.now_playing .votes .count{
+    color: #3c3;
+    font-weight: bold;
+}
+.now_playing .duration .progressbar{
+    background: #000;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #000;
+    border-bottom: 1px solid #222;
+    border-radius: 0.4em;
+    display: inline-block;
+    height: 0.5em;
+    margin-top: 0.5em;
+    text-align: left;
+    width: 40%;
+}
+.now_playing .duration .progressbar .current{
+    /*background: #ddd;
+    border: 1px solid #fff;
+    */
+    background: #3c3;
+    border: 1px solid green;
+    border-top: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+    
+    border-radius: 0.4em;
+    display: block;
+    height: 100%;
+    margin-top: -1px;
+    margin-left: -1px;
+}
+.now_playing .duration>.current{
+    color: #999;
+    font-size: 80%;
+}
+.now_playing .duration .total{
+    color: #999;
+    font-size: 80%;
+}
+
+#share_playlist{
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+#share_playlist .share_link{
+    border-radius: 0.5em;
+    color: #000;
+    font-size: 0.6em;
+    margin: 1px;
+    padding: 1em;
+    text-decoration: none;
+    z-index: 2;
+}
+
+#share_playlist .share_link.active{
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0;
+}
+
+#share_playlist .share_link img{
+    height: 24px;
+    opacity: 0.2;
+    vertical-align: top;
+    width: 24px;
+}
+
+#share_playlist .share_link:hover img, #share_playlist .share_link.active img{
+    opacity: 1;
+}
+
+#share_playlist_options{
+    margin-top: 0.1em;
+}
+
+.popup{
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    border-top-left-radius: 0;
+    box-shadow: rgba(50, 50, 50, 0.496094) 1px 2px 2px;
+    color: #000;
+    font-size: 13pt;
+    position: absolute;
+    padding: 1em;
+    z-index: 100;
+}
+
+.popup a.close{
+    background: #999;
+    border-radius: 1em;
+    color: #fff;
+    float: right;
+    font-weight: bold;
+    margin-right: -0.5em;
+    margin-top: -0.5em;
+    margin-left: 0.2em;
+    margin-bottom: 0.2em;
+    padding: 0.2em 0.5em;
+    text-decoration: none;
+}
+
+.popup a.close:hover{
+    background: #333;
+}
+
+.popup#playlist_add{
+    border-top-left-radius: 0.5em;
+    line-height: 1em;
+    min-width: 800px;
+    margin-top: -0.35em;
+    margin-left: -11.7em;
+}
+
+.popup_enabler{
+    z-index: 101;
+}
+
 #playlist_tip{
     color: #999;
-    float: right;
+    float: left;
     line-height: 2.2em;
     margin-bottom: 1em;
-    margin-top: 0em;
-    margin-right: -0.5em;
+    margin-top: 0.2em;
+    margin-left: 2em;
     text-align: left;
+}
+
+#playlist_tip a.popup_enabler{
+    display: none;
+}
+
+#playlist_tip a.popup_enabler.active{
+    background: #f1f1f1;
+    border-color: #ccc;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: #000;
+    text-shadow: none;
 }
 
 #playlist_tip .voting{
@@ -507,21 +890,72 @@ table.playlists td:first-child {
     font-weight: bold;
 }
 
+.playback_controls{
+    display: block;
+    margin: 0.5em 0;
+}
+.playback_controls a{
+    background: rgba(0, 0, 0, 0.25);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 0.5em;
+    display: inline-block;
+    padding: 0.1em 0.9em;
+    text-indent: -6000px;
+}
+.playback_controls a:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.playback_controls a img{
+    vertical-align: middle;
+}
+.playback_controls .previous{
+    background-image: url('/images/ir_previous.png');
+}
+.playback_controls .play{
+    background-image: url('/images/ir_play.png');
+}
+.playback_controls .pause{
+    background-image: url('/images/ir_pause.png');
+}
+.playback_controls .next{
+    background-image: url('/images/ir_next.png');
+}
+
 .display_mode{
+    background: #f6f6f6;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid #222;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
     color: #999;
+    clear: right;
+    display: inline-block;
+    float: left;
     font-size: 80%;
-    margin-top: 0;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    margin-left: -1.9em;
+    padding: 0.5em;
+    padding-left: 1em;
+}
+
+.display_mode img.show_as{
+    margin-right: 0.2em;
+    opacity: 0.5;
+    width: 16px;
 }
 
 .display_mode a{
+    border-radius: 0.3em;
     color: #666;
     padding: 0.1em 0.3em;
 }
 
 .display_mode a.current{
-    background: #eee;
-    border-radius: 0.3em;
-    color: #333;
+    background: #666;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -533,58 +967,102 @@ ul.tracks{
 }
 
 .tracks li{
-    display: inline-block;
-    float: left;
-    font-size: 80%;
-    min-height: 240px;
+    display: block;
+    font-size: 90%;
     list-style-type: none;
-    margin-right: 2em;
-    margin-bottom: 2em;
-    text-align: center;
-    width: 126px;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+    text-shadow: 0 1px 1px #000;
 }
 
 .tracks li .cover{
 /*    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 2px 6px;*/
+    /*
     background-repeat: no-repeat;
     border: 1px solid #666;
     border-left-color: #ccc;
     border-top-color: #ccc;
     border-radius: 0.9em;
     margin-bottom: 0.9em;
-}
-
-.tracks li a{
-    color: #000;
-    text-decoration: none;
-}
-
-.tracks li .artist{
+    background-color: #999;
     display: block;
+    height: 126px;
+    margin: 0 auto;
+    width: 126px;
+    */
+    display: block;
+    float: left;
+    height: 75px;
+    margin-right: 1em;
+    position: relative;
+    width: 75px;
 }
 
-.tracks li .name{
+/*
+    Inspiration: http://brunolazzaro.com.ar/test/audioPlayer/
+*/
+.tracks li .cover .overlay{
+    background: transparent url("/images/cover_overlay.png") top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
     display: block;
-    font-size: 130%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.tracks li .cover img{
+    height: 100%;
+    width: 100%;
+}
+
+.tracks li .cover .votes{
+    position: absolute;
+    top: 0;
+    z-index: 2;
 }
 
 .tracks li .votes{
-    display: block;
+    display: inline-block;
+    float: left;
     font-size: 70%;
-    margin-top: 0.5em;
+    margin-top: 0.8em;
 }
 
 .tracks li .votes a{
     line-height: 1.2em !important;
 }
 
+.tracks li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.tracks li .name{
+    display: block;
+    font-size: 110%;
+    font-weight: bold;
+    padding: 0.3em;
+}
+
+.tracks li .artist{
+    color: #777;
+    display: block;
+}
+
 aside{
-    color: #666;
+    color: #888;
     display: block;
     font-size: 70%;
 /*    float: right;*/
     margin: 0 auto;
     max-width: 800px;
+    text-shadow: 0 1px 0 #222;
 }
 
 aside>section{
@@ -593,8 +1071,12 @@ aside>section{
 }
 
 aside a{
-    color: #9ac;
+    color: #9ac !important;
     text-decoration: none;
+}
+
+aside a:hover, aside a:active{
+    text-decoration: underline;
 }
 
 #activities{
@@ -602,7 +1084,6 @@ aside a{
     line-height: 1.5em;
     list-style-type: none;
     padding: 0;
-    text-shadow: 0 1px 0 #fff;
 }
 
 #activities li{
@@ -622,17 +1103,21 @@ aside a{
 
 footer{
     clear: both;
-    color: #bbb;
+    color: #666;
     display: block;
     font-size: 60%;
     margin: 0 auto;
     max-width: 760px;
     padding-top: 3em;
     text-align: center;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 #222;
 }
 
 footer a{
     color: #9ac;
     text-decoration: none;
+}
+
+footer a:hover, footer a:active{
+    text-decoration: underline;
 }

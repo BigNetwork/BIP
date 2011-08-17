@@ -1,16 +1,19 @@
 class Track < ActiveRecord::Base
-  belongs_to :playlist
-  has_many :playlist_items
-  #belongs_to :playlist, :through => :playlist_items
-  has_many :votes, :dependent => :destroy
+  #belongs_to :playlist
+  has_many :playlist_items, :dependent => :destroy
+  has_many :playlists, :through => :playlist_items
+  #has_many :votes, :dependent => :destroy
+  has_many :votes, :through => :playlist_items
   #acts_as_list :scope => :playlist
+  
+  validates_presence_of :spotify_id
   
   # Output length in minutes instead of seconds:
   def length_in_minutes
     "%.2f" % (read_attribute(:length) / 60) unless read_attribute(:length).blank?
   end
 
-  def album_image_url
+  def fetch_cover_url
     require 'net/http'
     require 'json'
     #require 'CGI'
@@ -19,11 +22,18 @@ class Track < ActiveRecord::Base
     resp = Net::HTTP.get_response(url)
     data = resp.body
     result = JSON.parse(data)
-
-    unless result["track"]["album"].nil?
+    
+    if result.blank? || result["track"]["album"].nil?
+      return nil
+    else
+      logger.info(result["track"]["album"]["image"])
       result["track"]["album"]["image"][1]["#text"]
-    end 
+    end
   end
+
+  #def cover_url
+  #  fetch_cover_url
+  #end
 
 end
 

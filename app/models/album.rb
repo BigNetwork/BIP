@@ -1,4 +1,5 @@
 class Album < ActiveRecord::Base
+  validates_presence_of :spotify_id
 end
 
 # == Schema Information

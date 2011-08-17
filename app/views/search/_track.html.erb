@@ -1,0 +1,48 @@
+<tr class="track">
+	<td>
+		<%= link_to track.name, "/search?q=#{track.uri}" %>
+	</td>
+	<td>
+	<% if track.artists %>
+		<%- track.artists.each_with_index do |artist, index| -%>
+			<%= ', ' if index > 0 %>
+			<%= link_to artist.name, "/search?q=#{artist.uri}" %>
+		<%- end -%>
+	<% end %>
+	</td>
+	<td>
+		<% if track.album %>
+			<%= link_to track.album.name, "/search?q=#{track.album.uri}" %>
+		<% end %>
+	</td>
+	<td>
+	<%= form_for(@playlist_item, :style => 'display: inline-block;') do |f| %>
+	  <% if @playlist_item.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@playlist_item.errors.count, "error") %> prohibited this track from being saved:</h2>
+
+	      <ul>
+	      <% @playlist_item.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div class="field" style="display: inline;">
+	    <%= f.hidden_field :spotify_id, :value => track.uri %>
+	  </div>
+
+		<% if @playlist %>
+	  	<%= f.hidden_field :playlist_id, :value => @playlist.id %>
+		<% else %>
+			<%= f.collection_select :playlist_id, Playlist.all, :id, :name %>
+		<% end %>
+
+	  <div class="actions" style="display: inline;">
+	    <%= f.submit '+' %>
+	  </div>
+	<% end %>
+	</td>
+	<td class="share"><%= link_to image_tag('icons-sencha/action.png'), track.uri, {:title => 'Öppna i Spotify', :class => 'tooltip' } %></td>
+</tr>

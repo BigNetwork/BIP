@@ -1,4 +1,4 @@
-<h1>Alla låtar</h1>
+<h1>Alla låtar från alla spellistor</h1>
 
 <table class="tracks" id="all_tracks">
 	<thead>
@@ -7,10 +7,10 @@
 		<th class="artist">Artist</th>
 		<th class="album">Album</th>
 <!--		<th>Href</th>-->
-		<th>Popularitet</th>
+<!--		<th>Popularitet</th>-->
 		<th>Längd</th>
 		<% if params[:playlist_id].blank? %>
-		<th>Spellista</th>
+		<th>I spellistor</th>
 		<% end %>
 		<th>Röster</th>
 <!--
@@ -27,6 +27,7 @@
 			<td class="artist"><%= track.artist %></td>
 			<td class="album"><%= track.album %></td>
 <!--			<td><%= link_to track.href, track.href %></td>-->
+		<!--
 			<td>
 				<% unless track.popularity.blank? %>
 				<% 
@@ -36,16 +37,15 @@
 				end
 				%>
 			</td>
+		-->
 			<td><%= track.length_in_minutes %></td>
 			<% if params[:playlist_id].blank? %>
 			<td>
-				<% unless track.playlist.blank? %>
-				<%= link_to track.playlist.name, track.playlist %>
-				<% end %>
+				<%= track.playlist_items.count %>
 			</td>
 			<% end %>
 			<td class="votes">
-				<%= track.votes_count %>
+				<%= track.votes.count %>
 			</td>
 <!--
 			<td><%= link_to 'Show', track %></td>

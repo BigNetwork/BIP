@@ -53,15 +53,13 @@ class PlaylistItemsController < ApplicationController
     @playlist_item = PlaylistItem.new(params[:playlist_item])
     
     # Make sure we don't create a new track if we already have it:
-    @track = Track.find_or_create_by_spotify_id(params[:spotify_id])
+    @track = Track.find_or_create_by_spotify_id(params[:playlist_item][:spotify_id])
     
-    @playlist_item.track_id = @track.id
-    
-    unless params[:spotify_id].blank?
+    unless @track.blank? || params[:playlist_item][:spotify_id].blank? 
       # Find the song with Spotifys metadata API 
       # (using a wrapper from http://github.com/philnash/meta-spotify)
-      found_track = MetaSpotify::Track.lookup(params[:spotify_id])
-      
+      found_track = MetaSpotify::Track.lookup(params[:playlist_item][:spotify_id])
+    
       # Only save data if MetaSpotify could find the song
       unless found_track.blank?
         @track.name = found_track.name
@@ -71,19 +69,22 @@ class PlaylistItemsController < ApplicationController
         @track.length = found_track.length
         @track.popularity = found_track.popularity
         @track.votes_count = 0
+        @track.cover_url = @track.fetch_cover_url
         @track.save!
-        
+    
         # Save the playlist_id from the form:
         unless params[:playlist_item][:playlist_id].blank?
-          @playlist_item.playlist_id = params[:track][:playlist_id]
+          @playlist_item.playlist_id = params[:playlist_item][:playlist_id]
         end
-      end
-      
-    end
+        
+        # Only save track_id if all previous worked
+        @playlist_item.track_id = @track.id
+      end # unless found_track.blank?
+    end # unless @track.blank? || params[:spotify_id].blank? 
     
     respond_to do |format|
       if @playlist_item.save
-        format.html { redirect_to(@playlist_item, :notice => 'Playlist item was successfully created.') }
+        format.html { redirect_to(@playlist_item.playlist)}#, :notice => 'Playlist item was successfully created.') }
         format.xml  { render :xml => @playlist_item, :status => :created, :location => @playlist_item }
       else
         format.html { render :action => "new" }
@@ -117,6 +118,24 @@ class PlaylistItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(playlist_items_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def play
+    @playlist_item = PlaylistItem.find(params[:id])
+    if @playlist_item
+      # Increment amount of plays
+      #@playlist_item.??? = @track.??? + 1
+      
+      # Reset number of votes
+      @playlist_item.previous_votes_count = @playlist_item.previous_votes_count.to_i + @playlist_item.votes_count.to_i
+      @playlist_item.votes_count = 0
+      
+      # Respond with XML format:
+      respond_to do |format|
+        format.html { redirect_to(playlist_path(@playlist_item.playlist)) }
+        format.xml  { redirect_to(playlist_item_path(@playlist_item, :format => :xml)) }
+      end
     end
   end
 end

@@ -7,37 +7,27 @@
 			<th>Låtar</th>
 			<th>Uppspelning</th>
 			<th>Nästa låt</th>
-	<!--
-		<th></th>
-			<th></th>
-			<th></th>
-	-->
 		</tr>
 	</thead>
 	<tbody>
 <% @playlists.each do |playlist| %>
 	<tr class="playlist">
 		<td><%= link_to playlist.name, playlist %></td>
-	<td>
-		<%= playlist.tracks.size %>
-	</td>
-	<td>
-		<% if playlist.is_playing? %>
-			Spelar just nu:
-		<% else %>
-			Pausad
-		<% end %>
-	</td>
-	<td>
-		<% unless playlist.tracks.blank? %>
-			<%= link_to "#{playlist.tracks.first.artist} - #{playlist.tracks.first.name}", playlist_track_path(playlist, playlist.tracks.first) %>
-		<% end %>
-	</td>
-<!--
-	<td><%= link_to 'Show', playlist %></td>
-		<td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-		<td><%= link_to 'Destroy', playlist, :confirm => 'Are you sure?', :method => :delete %></td>
--->
+		<td>
+			<%= playlist.playlist_items.size %>
+		</td>
+		<td>
+			<% if playlist.is_playing? %>
+				Spelar just nu:
+			<% else %>
+				Pausad
+			<% end %>
+		</td>
+		<td>
+			<% unless playlist.playlist_items.blank? %>
+				<%= link_to "#{playlist.playlist_items.first.track.artist} - #{playlist.playlist_items.first.track.name}", playlist_track_path(playlist, playlist.playlist_items.first) %>
+			<% end %>
+		</td>
 	</tr>
 <% end %>	
 

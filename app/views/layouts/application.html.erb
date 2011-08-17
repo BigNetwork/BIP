@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Bip</title>
-  <%= stylesheet_link_tag "bip.css" %>
+  <%= stylesheet_link_tag "bip.css", "tipsy.css" %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "application.js" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "jquery.tipsy.js", "application.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -22,10 +22,11 @@
 			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') || !params[:playlist_id].blank? } %></li>
+			<li><%= link_to 'Sök', '/search', { :class => ("current" if controller.controller_name == 'search') } %></li>
 		</ul>
 	</nav>
 	
-	<section id="page">
+	<section id="page" class="<%= controller.controller_name %> <%= controller.action_name %>">
 
 
 <%=  %>	
@@ -41,14 +42,18 @@
 		<section id="updates"> 
 			<h3>Aktivitet:</h3> 
 			<ul id="activities"> 
-				<% unless @latest_votes.blank? %>
+				<% if @latest_votes.blank? %>
+					Ingen har röstat på någon låt ännu.
+				<% else %>
 					<% @latest_votes.each do |vote| %>
 					<li class="activity"> 
 						<span class="icon vote">❤</span> 
 						<%= link_to 'Någon', '#' %>
 						röstade på låten
-						<% unless vote.track.blank? %>
-							<%= link_to "#{vote.track.artist} - #{vote.track.name}", vote.track %>
+						<% if vote.playlist_item && vote.playlist_item.track %>
+							<%= link_to "#{vote.playlist_item.track.artist} - #{vote.playlist_item.track.name}", vote.playlist_item %>
+						<% else %>
+							?
 						<% end %>
 						<span class="timestamp"><%= time_ago_in_words vote.created_at %> sedan</span>
 					</li> 
