@@ -87,8 +87,8 @@ $(function(){
         });
 
 		// Add tooltips to all links with the TOOLTIP class:
-		$('a.tooltip').tipsy({
-			gravity: 's',
+		$('a.tooltip').twipsy({
+			placement: 'above',
 			html: true
 		});
 

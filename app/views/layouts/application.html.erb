@@ -2,12 +2,14 @@
 <html>
 <head>
   <title>Bip</title>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
   <%= stylesheet_link_tag "bip.css", "tipsy.css" %>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&amp;subset=latin' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "jquery.dataTables.min.js", "jquery.tipsy.js", "application.js" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "rails.js", "http://twitter.github.com/bootstrap/1.3.0/bootstrap-alerts.js", "jquery.dataTables.min.js", "http://twitter.github.com/bootstrap/1.3.0/bootstrap-twipsy.js", "application.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+	<!--
 	<header>
 		<h1>
 			<a href="<%= root_path %>">
@@ -15,31 +17,70 @@
 				<span class="explanation">Bignetwork Internet Player</span>
 			</a>
 		</h1>
-		<!-- ♫  ♪ -->
+		<%# ♫  ♪ %>
 	</header>
+	-->
+
+	<!--
 	<nav>
 		<ul>
-			<!--<li><%= link_to 'Användare', '#' %></li>-->
 			<li><%= link_to 'Alla låtar', tracks_path, { :class => ("current" if current_page?(tracks_path)) } %></li>
 			<li><%= link_to 'Spellistor', playlists_path, { :class => ("current" if controller.controller_name == 'playlists') || !params[:playlist_id].blank? } %></li>
 			<li><%= link_to 'Sök', '/search', { :class => ("current" if controller.controller_name == 'search') } %></li>
 		</ul>
 	</nav>
-	
+	-->
+
+	<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="<%= root_path %>">
+          	♪
+          	Bignetwork Internet Player
+          </a>
+          <ul class="nav">
+            <li class="<%= "active" if controller.controller_name == 'playlists' %>">
+            	<a href="<%= playlists_path %>">Spellistor</a>
+            </li>
+            <li class="<%= "active" if current_page?(tracks_path) %>">
+            	<a href="<%= tracks_path %>">Alla låtar</a>
+            </li>
+          </ul>
+          <form method="get" action="/search" class="pull-right">
+          	<% if @playlist %>
+          	<input type="hidden" name="playlist_id" value="<%= @playlist.id %>" />
+          	<% end %>
+            <!--<label for="add_playlist_search_q">Lägg till låt:</label>-->
+            <input name="q" id="add_playlist_search_q" type="search" placeholder="Sök efter artist/album/låt" value="<%= h params[:q] %>" />
+            <!--<button class="btn" type="submit">Sök</button>-->
+          </form>
+        </div>
+      </div>
+    </div>
+
+	<div class="container">
+
+	<%= render_crumbs :format => :html_list, :ul_class => 'breadcrumb', :active_li_class => 'active', :separator => '<span class="divider">/</span>'  %>
+
+	<% flash.each do |key, msg| %>
+		<div class="alert-message <%= key %>" data-alert="alert">
+  			<a class="close" href="#">×</a>
+  			<p>
+  				<strong><%= key.capitalize %></strong><br/>
+  				<%= msg %>
+  			</p>
+		</div>
+	<% end %>
+
 	<section id="page" class="<%= controller.controller_name %> <%= controller.action_name %>">
 
-
-<%=  %>	
+		<%= yield %>
 		
-		<section id="voting">
-			
-			<%= yield %>
-		
-		</section>
 	</section>
 	
-	<aside> 
-		<section id="updates"> 
+	<aside>
+		<div class="row">
+		<div id="updates" class="span7"> 
 			<h3>Aktivitet:</h3> 
 			<ul id="activities"> 
 				<% if @latest_votes.blank? %>
@@ -67,17 +108,20 @@
 				</li>
 				-->
 			</ul> 
-		</section> 
-		<section id="about"> 
+		</div> 
+		<div id="about" class="span7"> 
 			<h3>Vad är BIP?</h3> 
 			<p>I BIP kan man lägga upp och rösta på låtar man gillar. Låtarna med flest röster hamnar överst och spelas först.</p> 
 			<p>Musiken kommer från <a href="http://www.spotify.com/">Spotify</a> och på sikt hoppas vi kunna göra samma sak med YouTube-videor.</p> 
-		</section> 
+		</div>
+		</div>
 	</aside> 
 
 	<footer> 
-		BIP, Bignetwork Internet Player – en produktion av <a href="http://www.bignetwork.se/bst">Bignetwork Software Team</a> 
+		<p>BIP, Bignetwork Internet Player – en produktion av <a href="http://www.bignetwork.se/bst">Bignetwork Software Team</a></p>
 	</footer>
+
+	</div> <!-- /container -->
 	
 	<%= yield :javascript %>
         <script type="text/javascript">

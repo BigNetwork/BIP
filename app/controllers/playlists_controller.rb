@@ -1,8 +1,11 @@
 class PlaylistsController < ApplicationController
+
   # GET /playlists
   # GET /playlists.xml
   def index
     @playlists = Playlist.all
+
+    add_crumb "Spellistor"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,10 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1.xml
   def show
     @playlist = Playlist.find(params[:id])
+    add_crumb "Spellistor", '/playlists'
+    add_crumb @playlist.name
+
+    @display_type = params[:display]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,6 +33,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists/new.xml
   def new
     @playlist = Playlist.new
+    add_crumb "Spellistor", '/playlists'
+    add_crumb "Ny spellista"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +45,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1/edit
   def edit
     @playlist = Playlist.find(params[:id])
+    add_crumb @playlist.name
   end
 
   # POST /playlists

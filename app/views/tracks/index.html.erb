@@ -1,4 +1,4 @@
-<h1>Alla låtar från alla spellistor</h1>
+<h1>Alla låtar <small>från alla spellistor</small></h1>
 
 <table class="tracks" id="all_tracks">
 	<thead>
@@ -38,7 +38,7 @@
 				%>
 			</td>
 		-->
-			<td><%= track.length_in_minutes %></td>
+			<td><%= track.length_as_string %></td>
 			<% if params[:playlist_id].blank? %>
 			<td>
 				<%= track.playlist_items.count %>

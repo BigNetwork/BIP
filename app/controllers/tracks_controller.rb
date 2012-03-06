@@ -22,7 +22,9 @@ class TracksController < ApplicationController
 
     unless params[:playlist_id].blank?
       @playlist = Playlist.find(params[:playlist_id])
+      add_crumb @playlist.name, @playlist
     end
+    add_crumb @track.name
 
     respond_to do |format|
       format.html # show.html.erb

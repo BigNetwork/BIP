@@ -6,11 +6,17 @@ html{
     width: 100%;
 }
 
-body{
-    background: #333 url('/images/tile_dark.png');
-    font-family: sans-serif;
+html, body{
+    background: #EEE;
+    /*background: #333 url('/images/tile_dark.png');*/
 }
 
+body{
+    font-family: sans-serif;
+    padding-top: 38px; /* 40px default for bootstrap */
+}
+
+/*
 a:link{
     color: #339;
 }
@@ -18,7 +24,7 @@ a:link{
 a{
     position: relative;
 }
-
+*/
 a:active{
     top: 1px;
 }
@@ -162,23 +168,27 @@ body>section{
 
 section#page{
     -webkit-box-shadow: rgba(0, 0, 0, 0.296094) 2px 2px 5px;
-    background: #fff;
-    background: rgba(255, 255, 255, 0.05);
+    /*background: #fff;
+    background: rgba(255, 255, 255, 0.05);*/
     /*border: 1px solid #ccc;*/
+    background: #fff;
     -moz-border-radius: 0.5em;
     clear: both;
     border-radius: 0.5em;
-    color: #fff;
-    display: block;
+    /*color: #fff;*/
+    display: block;/*
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 800px;*/
     padding: 1em 1.5em;
+    margin-bottom: 30px;
 }
 
 section#page table{
-    margin: -1em -1.5em;
+    /*
+    margin: 0 -1.5em;
     margin-top: 0.5em;
-    width: 106%;
+    width: 104.5%;
+    */
 }
 
 section#page nav{
@@ -253,10 +263,11 @@ section#page h2{
 
 a.popup_enabler#admin_settings_link{
     background: url('/images/icons-glyphish/19-gear.png') center center no-repeat;
+    background-position: center middle;
     background-size: 100% 100%;
     display: inline-block;
     height: 24px;
-    opacity: 0.3;
+    opacity: 0.2;
     text-indent: -6000px;
     width: 24px;
 }
@@ -279,19 +290,21 @@ a.popup_enabler#admin_settings_link:hover{
 
 a.open_in_spotify{
     background-image: url('/images/icons-sencha/action.png');
+    background-position: center middle;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: inline-block;
-    height: 20px;
+    height: 24px;
     opacity: 0.2;
     text-indent: -6000px;
-    width: 20px;
+    width: 24px;
 }
 a.open_in_spotify:hover{
     opacity: 1;
 }
 
 table{
+    border: none;
     border-spacing: 0;
 	clear: both;
     margin: 0;
@@ -301,12 +314,14 @@ table{
 
 thead th{
 /*    border-bottom: 1px solid #ccc;*/
+/*    border: none;
     border-right: 1px solid #333;
     color: #999;
     font-size: 0.8em;
     font-weight: normal;
     padding: 0.3em 0.8em;
     text-align: left;
+*/
 }
 
 thead th:last-child{
@@ -321,16 +336,28 @@ table tr:last-child td:last-child{
     border-bottom-right-radius: 0.5em;
 }
 
+/*
+table td{
+    border: none;
+}
+
+table tr + tr td {
+    border: none;
+}
+table th + th, table td + td {
+    border: none;
+}
+
 .tracks thead .artist, .tracks thead .name{
     border-right: 1px solid #333;
 }
-
+*/
 .track.highlight td{
     background: #dfc;
 }
 
 .track.current td{
-    background: #3c3;
+    background: #3c3 !important;
     color: #fff;
     text-shadow: 1px 1px 0 green;
 }
@@ -364,6 +391,7 @@ table .track .cover{
 
 table .track .cover a{
     display: block;
+    line-height: 0;
 }
 
 table .track .cover .overlay{
@@ -409,27 +437,30 @@ table .track .share a:hover img{
 }*/
 
 td a{
-    color: #339;
+/*    color: #339;*/
     text-decoration: none;
 }
 
 td a:hover{
     text-decoration: underline;
 }
-
+/*
 td{
     background: #F6F6F6;
     background: url('/images/tile.gif');
     border-bottom: 1px solid #EAEAEA;
     border-top: 1px solid #fff;
     color: #333;
-    font-size: 90%;
     padding: 0.5em 0.7em;
     text-shadow: 1px 1px 0px #fff;
 }
-
+*/
 tr:hover td{
     background-color: #fff;
+}
+
+.track.current > a{
+    background: #3c3;
 }
 
 .track.add a{
@@ -661,17 +692,17 @@ table.playlists td:first-child {
     margin-bottom: 1em;
     min-height: 70px;
     text-align: right;
-    text-shadow: 0px 1px 1px black;
+/*    text-shadow: 0px 1px 1px black;*/
     width: 50%;
 }
 .now_playing .cover{
     background: #ccc;
 /*    -webkit-box-shadow: rgba(50, 50, 50, 0.496094) 1px 2px 2px;*/
     float: right;
-    height: 100px;
+    height: 54px;
     margin-left: 1em;
     position: relative;
-    width: 100px;
+    width: 54px;
 }
 /*
     Inspiration: http://brunolazzaro.com.ar/test/audioPlayer/
@@ -704,7 +735,7 @@ table.playlists td:first-child {
     line-height: 1.3em;
 }
 .now_playing .name a{
-    color: #fff;
+    color: #000;
     text-decoration: none;
 }
 .now_playing .name a:hover{
@@ -959,20 +990,22 @@ table.playlists td:first-child {
     text-decoration: none;
 }
 
-ul.tracks{
-    margin: 0;
+ol.tracks{
     overflow: auto;
     padding: 0;
     width: 100%;
 }
 
 .tracks li{
+    /*
     display: block;
     font-size: 90%;
     list-style-type: none;
     margin-bottom: 1.5em;
     overflow: hidden;
     text-shadow: 0 1px 1px #000;
+    */
+    position: relative;
 }
 
 .tracks li .cover{
@@ -1001,7 +1034,7 @@ ul.tracks{
 /*
     Inspiration: http://brunolazzaro.com.ar/test/audioPlayer/
 */
-.tracks li .cover .overlay{
+.tracks li .overlay{
     background: transparent url("/images/cover_overlay.png") top center no-repeat;
     background-size: 100% 100%;
     -webkit-box-shadow: inset 0px 0px 1px rgba(255,255,255,0.5);
@@ -1031,38 +1064,69 @@ ul.tracks{
     display: inline-block;
     float: left;
     font-size: 70%;
-    margin-top: 0.8em;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
 }
 
 .tracks li .votes a{
     line-height: 1.2em !important;
+    margin: 0;
 }
 
 .tracks li a{
     color: #fff;
     text-decoration: none;
+    position: relative;
+}
+
+.tracks li .description{
+    display: block;
+    font-size: 90%;
+    position: absolute;
+    bottom: 5px;
+    left: 9px;
+    width: 118px;
+    z-index: 2;
+    text-shadow: rgba(0,0,0,0.9) 1px 1px 1px, rgba(0,0,0,0.9) -1px -1px 1px, rgba(0,0,0,0.9) -1px 1px 1px, rgba(0,0,0,0.9) 1px -1px 1px;
 }
 
 .tracks li .name{
     display: block;
     font-size: 110%;
     font-weight: bold;
-    padding: 0.3em;
 }
 
 .tracks li .artist{
-    color: #777;
+    color: #ccc;
     display: block;
+}
+
+.label{
+    text-shadow: none;
+}
+
+.pills.display_style{
+    margin-left: 9px;
+}
+.pills.display_style img{
+    margin-right: 5px;
+    vertical-align: sub;
+}
+.display_style img{
+    margin-right: 5px;
+    vertical-align: sub;
 }
 
 aside{
     color: #888;
     display: block;
-    font-size: 70%;
+/*    font-size: 70%;*/
 /*    float: right;*/
-    margin: 0 auto;
-    max-width: 800px;
-    text-shadow: 0 1px 0 #222;
+ /*   margin: 0 auto;
+    max-width: 800px;*/
+/*    text-shadow: 0 1px 0 #222;*/
 }
 
 aside>section{
@@ -1103,14 +1167,14 @@ aside a:hover, aside a:active{
 
 footer{
     clear: both;
-    color: #666;
+    color: #ccc;
     display: block;
     font-size: 60%;
     margin: 0 auto;
     max-width: 760px;
     padding-top: 3em;
     text-align: center;
-    text-shadow: 0 1px 0 #222;
+/*    text-shadow: 0 1px 0 #222; */
 }
 
 footer a{

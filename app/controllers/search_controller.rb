@@ -50,6 +50,9 @@ class SearchController < ApplicationController
         @error = 'Okänt fel vid sökningen'
       end
     end
+
+    add_crumb 'Sök', '/search'
+    add_crumb CGI::escapeHTML(@query)
     
     respond_to do |format|
       format.html

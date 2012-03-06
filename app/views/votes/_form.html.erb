@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :playlist_item_id %><br />
-    <%= f.collection_select :playlist_item_id, PlaylistItem.all, :id, :id %>
+    <%= f.collection_select :playlist_item_id, PlaylistItem.all(:include => :track), :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

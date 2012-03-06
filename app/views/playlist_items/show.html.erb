@@ -1,12 +1,9 @@
-<% unless @playlist_item.playlist.nil? %>
-<nav class="breadcrumbs">
-  <ul>
-    <li><%= link_to "← Tillbaka till spellistan " + @playlist_item.playlist.name, @playlist_item.playlist %></li>
-  </ul>
-</nav>
-<% end %>
 
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+
+<div class="listen" style="float: right">
+  <%= link_to image_tag("icon_spotify.png", :valign => 'sub') + " Visa i Spotify", @playlist_item.track.href, { :class => 'button listen' } %>
+</div>
 
 <%= image_tag @playlist_item.track.cover_url || 'cover_unknown.png', {:class => 'artist_cover', :width => 64} %>
 
@@ -17,17 +14,14 @@
   <%= @playlist_item.track.album %>
 </div>
 
+</div>
+
 <p>
-&nbsp;
+  Längd:
+  <%= @playlist_item.track.length_as_string %>
+</p>
+
 <!--
-  <%= @playlist_item.track.length_in_minutes.to_s.gsub("\.", ":") %>
--->
-</p>
-
-<p>
-  <%= link_to image_tag("icon_spotify.png") + " Lyssna", @playlist_item.track.href, { :class => 'button listen' } %>
-</p>
-
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /**
@@ -41,16 +35,16 @@
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=bignetworkinternetplayer">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-<!--
-<h3>Finns i dessa spellistor:</h3>
-
-<p>
-	<% unless @playlist_item.playlist.blank? %>
-		<%= link_to @playlist_item.playlist.name, @playlist_item.playlist %>
-	<% end %>
-</p>
-
-<h3>Röster: <%= @playlist_item.votes_count %></h3>
 -->
+
+<h3>Finns i <%= @playlist_item.track.playlists.count %> spellistor:</h3>
+
+<ul>
+	<% unless @playlist_item.track.blank? %>
+  <% @playlist_item.track.playlists.each do |playlist| %>
+		<li><%= link_to playlist.name, playlist %></li>
+	<% end %>
+  <% end %>
+</ul>
+
+<h3>Röster: <%= @playlist_item.votes.size %> (totalt <%= @playlist_item.track.votes.count %> i alla spellistor)</h3>

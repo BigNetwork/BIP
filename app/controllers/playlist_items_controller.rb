@@ -1,4 +1,7 @@
 class PlaylistItemsController < ApplicationController
+
+  add_crumb 'Spellistor', :playlists_path
+
   # GET /playlist_items
   # GET /playlist_items.xml
   def index
@@ -17,7 +20,9 @@ class PlaylistItemsController < ApplicationController
 
     unless params[:playlist_id].blank?
       @playlist = Playlist.find(params[:playlist_id])
+      add_crumb @playlist.name, playlist_path(@playlist)
     end
+    add_crumb @playlist_item.track.full_name
 
     respond_to do |format|
       format.html # show.html.erb

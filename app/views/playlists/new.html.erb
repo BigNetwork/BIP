@@ -1,6 +1,8 @@
-<h1>Ny spellista</h1>
+<div class="page-header">
+  <h1>Ny spellista <small>&mdash; En alldeles egen</small></h1>
+</div>
 
-<%= form_for(@playlist) do |f| %>
+<%= form_for(@playlist, :html => {:class => 'form-stacked'}) do |f| %>
   <% if @playlist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
@@ -18,6 +20,7 @@
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn primary' %>
+    <%= link_to 'Avbryt', playlists_path, :class => 'btn' %> 
   </div>
 <% end %>

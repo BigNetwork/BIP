@@ -1,3 +1,4 @@
+<div class="page-header">
 <% if @query %>
 
 	<h1>
@@ -19,7 +20,9 @@
 		<% if @playlist %>
 		<input type="hidden" name="playlist_id" value="<%= @playlist.id %>">
 		<% end %>
+		<button class="btn primary" type="submit">Sök</button>
 	</form>
+</div>
 	
 <% if @query %>
 	

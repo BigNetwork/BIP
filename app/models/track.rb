@@ -8,9 +8,21 @@ class Track < ActiveRecord::Base
   
   validates_presence_of :spotify_id
   
+  def full_name
+    artist + " - " + name
+  end
+
   # Output length in minutes instead of seconds:
   def length_in_minutes
     "%.2f" % (read_attribute(:length) / 60) unless read_attribute(:length).blank?
+  end
+
+  # From a float to this: 3:59
+  def length_as_string
+    seconds = read_attribute(:length) || 0
+    m = (seconds/60).floor
+    s = (seconds - (m * 60)).round
+    "%2d:%02d" % [ m, s ]
   end
 
   def fetch_cover_url

@@ -12,14 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :is_playing %><br />
+    <%= f.label :is_playing %>
     <%= f.check_box :is_playing %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn primary' %>
+    <%= link_to 'Avbryt', @playlist, :class => 'btn' %>
   </div>
 <% end %>

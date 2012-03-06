@@ -26,6 +26,11 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
 
+    unless params[:playlist_item_id].blank?
+      @playlist_item = PlaylistItem.find(params[:playlist_item_id])
+      @vote.playlist_item_id = @playlist_item.id
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @vote }

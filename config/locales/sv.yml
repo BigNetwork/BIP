@@ -178,7 +178,7 @@
       playlist_item:
         track_id: "Låt"
       vote:
-        playlist_item_id: "Spellista"
+        playlist_item_id: "Låt"
       # For example,
       #   user:
       #     login: "Handle"

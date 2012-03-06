@@ -1,12 +1,20 @@
-<h1>❶ Välj spellista &nbsp; <br/>❷ Lägg till en låt <br/>❸ Rösta upp låtar du gillar</h1>
+<div class="page-header">
+	<h1>Vilken spellista? <small>Välj en så kan du lägga till eller rösta på låtar du gillar</small></h1>
+	<!--
+	<h1>Lägg till eller rösta på låtar du gillar<small>i någon av spellistorna:</small></h1>
+	-->
+	<!--
+	<h1>➊ Välj spellista &nbsp; <br/>➋ Lägg till en låt <br/>➌ Rösta upp låtar du gillar</h1>
+	-->
+</div>
 
-<table class="playlists" id="all_playlists">
+<table class="playlists zebra-striped" id="all_playlists">
 	<thead>
 		<tr>
 			<th>Namn</th>
 			<th>Låtar</th>
-			<th>Uppspelning</th>
-			<th>Nästa låt</th>
+			<th>Röster</th>
+			<th>Status</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,13 +25,15 @@
 			<%= playlist.playlist_items.size %>
 		</td>
 		<td>
-			<% if playlist.is_playing? %>
-				Spelar just nu:
-			<% else %>
-				Pausad
-			<% end %>
+			<%= playlist.votes.size %>
 		</td>
 		<td>
+			<% if playlist.is_playing? %>
+				<span class="label success">Spelar</span>
+			<% else %>
+				<span class="label">Pausad</span>
+			<% end %>
+			&nbsp;
 			<% unless playlist.playlist_items.blank? %>
 				<%= link_to "#{playlist.playlist_items.first.track.artist} - #{playlist.playlist_items.first.track.name}", playlist_track_path(playlist, playlist.playlist_items.first) %>
 			<% end %>
@@ -34,7 +44,12 @@
 </tbody>
 </table>
 
+<div class="well">
+eller &nbsp; <%= link_to '+ Lägg till en spellista', new_playlist_path, :class => 'btn' %>
+</div>
+<!--
 <div class="table_adder">
 	<%= link_to '+', new_playlist_path, { :class => 'icon small add' } %>
-	<%= link_to 'Lägg till en spellista', new_playlist_path %>
+	<%= link_to '+ Lägg till en spellista', new_playlist_path, :class => '' %>
 </div>
+-->

@@ -39,8 +39,8 @@
 			<%= f.collection_select :playlist_id, Playlist.all, :id, :name %>
 		<% end %>
 
-	  <div class="actions" style="display: inline;">
-	    <%= f.submit '+' %>
+	  <div class="" style="display: inline;">
+	    <%= f.submit '+', :class => 'btn primary' %>
 	  </div>
 	<% end %>
 	</td>
