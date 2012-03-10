@@ -33,10 +33,14 @@
 			<% else %>
 				<span class="label">Pausad</span>
 			<% end %>
+			
 			&nbsp;
+			
 			<% unless playlist.playlist_items.blank? %>
 				<%= link_to "#{playlist.playlist_items.first.track.artist} - #{playlist.playlist_items.first.track.name}", playlist_track_path(playlist, playlist.playlist_items.first) %>
 			<% end %>
+			
+			<span class="latest_status_at"><%= time_ago_in_words playlist.latest_status_at, true %> sedan</span>
 		</td>
 	</tr>
 <% end %>	
