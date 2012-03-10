@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    I18n.locale = "sv" || I18n.default_locale 
+    I18n.locale = "sv-SE" || I18n.default_locale 
   end
 
 end

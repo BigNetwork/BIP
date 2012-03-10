@@ -2,6 +2,7 @@
 class SearchController < ApplicationController
   def index
     @query = params[:q]
+    logger.info @query
     @tracks = []
     @result_type = nil
     @playlist_item = PlaylistItem.new
