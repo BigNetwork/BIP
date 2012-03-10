@@ -1,6 +1,6 @@
 class PlaylistItem < ActiveRecord::Base
   belongs_to :track
-  belongs_to :playlist
+  belongs_to :playlist, :counter_cache => true
   has_many :votes, :dependent => :destroy
   has_many :plays
   
