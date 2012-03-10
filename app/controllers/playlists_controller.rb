@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.xml
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.all :include => [:plays, :votes, :tracks, :playlist_items]
 
     add_crumb "Spellistor"
 
