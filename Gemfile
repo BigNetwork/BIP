@@ -15,6 +15,7 @@ group :development do
   gem 'sass'
   gem 'coffee-script'
   gem 'uglifier'
+  gem 'railroady'
 end
 
 group :test do

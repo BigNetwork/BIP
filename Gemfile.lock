@@ -96,6 +96,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    railroady (1.0.7)
     rails (3.1.0)
       actionmailer (= 3.1.0)
       actionpack (= 3.1.0)
@@ -158,6 +159,7 @@ DEPENDENCIES
   cucumber-rails
   jquery-rails
   meta-spotify
+  railroady
   rails (= 3.1.0)
   rails-i18n
   sass
